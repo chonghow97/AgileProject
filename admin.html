@@ -9,60 +9,69 @@
     padding: 10px;
   }
 </style>
+<!-- Navigation  Bar -->
 <body>
-  <nav class="navbar navbar-light bg-light">
+	  <nav class="navbar navbar-light bg-light">
     <span class="navbar-brand mb-0 h1">E-learning</span>
     <ul class="nav justify-content-end">
       <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Admin</a>
       </li>
     </ul>
-  </nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-2">
-        <div>
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Allocation</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-<div class="col-10 d-flex justify-content-between">
-  <div class="p-2">
-  <h3>Tutor</h3>
-        <select style='height: 250px; width: 300px; ' size='2' id='select'>
-     <option>Affogato</option>
-     <option>Americano</option>
-     <option>Bicerin</option>
-     <option>Breve</option>
-     <option>Café Bombón</option>
-     <option>Caffé Corretto</option>
-     <option>Café Crema</option>
-     <option>Caffé Latte</option>              
-</select></div>
-  <div class="p-2"><h3>Student</h3>
-        <select style='height: 250px; width: 300px; ' size='2' id='select'>
-     <option>Affogato</option>
-     <option>Americano</option>
-     <option>Bicerin</option>
-     <option>Breve</option>
-     <option>Café Bombón</option>
-     <option>Caffé Corretto</option>
-     <option>Café Crema</option>
-     <option>Caffé Latte</option>              
-</select></div>
+</nav>
+ <!-- Sidebar  Bar -->
+<div class="row">
+	<div class="col-3">
+		<nav class="nav flex-column">
+  <a class="nav-link active disabled bg-primary text-white" href="#">Dashboard</a>
+  <a class="nav-link disabled" href="#">Allocation</a>
+  <a class="nav-link" href="#">Example</a>
+  <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Example 2</a>
+</nav>
+	</div>
+	<div class="col ">
+		<div class="row ">
+			<div class="column p-3">
+				<h3>Tutor</h3>
+				<select style='height: 250px; width: 300px; ' size='2' id='select'>
+					<option>Tutor1</option>
+					<option>Tutor2</option>
+					<option>Tutor3</option>
+					<option>Tutor4</option>
+					<option>Tutor5</option>
+					<option>Tutor6</option>
+					<option>Tutor7</option>
+					<option>Tutor8</option>
+					<option>Tutor19</option>
+				</select>
+			</div>
+			
+			<div class="column p-3">
+				<h3>Student</h3>
+				<select style='height: 250px; width: 300px; ' size='2' id='select'>
+					<option>Student1</option>
+					<option>Student2</option>
+					<option>Student3</option>
+					<option>Student4</option>
+					<option>Student5</option>
+					<option>Student6</option>
+					<option>Student7</option>
+					<option>Student8</option>
+					<option>Student19</option>
+				</select>
+			</div>
+		</div>
+			<button type="button" class="btn btn-primary float-left">Assign</button>
+	</div>
+	</div>
+	
 </div>
-    </div>
-    <button type="button" class="btn btn-primary float-right">Assign</button>
-  </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    	console.log($("#select1.value"));
+    </script>
   </body>
   </html>
