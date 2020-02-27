@@ -30,14 +30,25 @@
 </style>
 
   <body>
+    <!-- Navigation  Bar -->
+<body>
     <nav class="navbar navbar-light bg-light">
-      <span class="navbar-brand mb-0 h1">E-learning</span>
-      <ul class="nav justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Admin</a>
-        </li>
-      </ul>
-    </nav>
+    <span class="navbar-brand mb-0 h1">E-learning</span>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Admin</a>
+      </li>
+    </ul>
+</nav>
+ <!-- Sidebar  Bar -->
+<div class="row">
+  <div class="col-3">
+    <nav class="nav flex-column">
+  <a class="nav-link active disabled bg-primary text-white" href="#">Dashboard</a>
+  <a class="nav-link disabled" href="#">Allocation</a>
+  <a class="nav-link" href="#">Example</a>
+  <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Example 2</a>
+</nav>
 
     <div class="container">
       <div class="row">
