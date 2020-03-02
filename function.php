@@ -81,7 +81,7 @@ echo "<p class='mt-3 ml-3'>Tutor {$tutor} is assign to student {$student}.</p>";
         
            }
 
-function create_appointment(){
+function  create_appointment(){
 	if (isset($_POST['create_appointment'])) {
 		$name = escape_string($_POST['name']);
 		$tutor = escape_string($_POST['tutor']);
@@ -94,5 +94,6 @@ function create_appointment(){
 		confirm($query);
 	}
 }
+
 
 ?>
