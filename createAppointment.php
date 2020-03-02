@@ -63,7 +63,7 @@
     
       <div class="form-group">
 
-      <input type="submit" name="create_appointment" class="btn btn-primary pull-right" value="Appointment" onclick="check_appiontment()">
+      <input type="submit" name="create_appointment" class="btn btn-primary pull-right" value="Appointment" onclick="check_appointment()">
          
      </div>
   </div>
@@ -71,7 +71,7 @@
 
 <script type="text/javascript">
   
-  function check_appiontment() {
+  function check_appointment() {
     alert("Appointment confirmed!");
   }
 
