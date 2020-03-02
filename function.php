@@ -1,35 +1,5 @@
 <?php
 
-function set_message($msg){
-	
-	if(!empty($msg)){
-		
-		$_SESSION['message'] = $msg;
-	} else {
-		
-		$msg = "";
-	}
-	
-}
-
-function display_message(){
-	
-	if(isset($_SESSION['message'])) {
-		
-		echo $_SESSION['message'];
-		unset($_SESSION['message']);
-	}
-	
-}
-
-
-function redirect($location){
-	
-	header("Location: $location ");
-	
-}
-
-
 function query($sql) {
 	
 	global $connection;
@@ -107,10 +77,22 @@ function assign_allocation(){
 
 echo "<p class='mt-3 ml-3'>Tutor {$tutor} is assign to student {$student}.</p>";
 
-
 }
         
            }
 
+function create_appointment(){
+	if (isset($_POST['create_appointment'])) {
+		$name = escape_string($_POST['name']);
+		$tutor = escape_string($_POST['tutor']);
+		$date = escape_string($_POST['date']);
+		$time = escape_string($_POST['time']);
+		$venue = escape_string($_POST['venue']);
+		$comment = escape_string($_POST['comment']);
+
+		$query = query("INSERT INTO appointment(name, tutor, date, time, venue, comment) VALUES ('{$name}','{$tutor}','{$date}','{$time}','{$venue}','{$comment}')");
+		confirm($query);
+	}
+}
 
 ?>
