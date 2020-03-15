@@ -59,8 +59,7 @@ function get_student(){
 
 $student_links = <<<DELIMETER
 
-<option value="{$row['studId']}">{$row['username']}</option>
-
+<div class="form-check col-lg-4 col-md-6 col-xm-12"> <input class="form-check-input" type="checkbox" value="{$row["studId"]}" id="{$row["studId"]}"> <label class="form-check-label" for="{$row["studId"]}"> {$row['username']} </label> </div>
 DELIMETER;
 
 echo $student_links;
