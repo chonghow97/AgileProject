@@ -32,66 +32,57 @@ function fetch_array($result){
 
 /************************ADMIN FUNCTIONS***************************/
 
-function get_tutor(){
-
-	$query = query("SELECT * FROM tutor");
-	confirm($query);
-   
-    while($row = mysqli_fetch_array($query)){
-
-$tutor_links = <<<DELIMETER
-
-<option value="{$row['tutorId']}">{$row['username']}</option>
-
-DELIMETER;
-
-echo $tutor_links;
-
-   }
-}
-
-function get_student(){
-
-	$query = query("SELECT * FROM student");
-	confirm($query);
-   
-    while($row = mysqli_fetch_array($query)){
-
-$student_links = <<<DELIMETER
-
-<option value="{$row['studId']}">{$row['username']}</option>
-
-DELIMETER;
-
-echo $student_links;
-
-   }
-}
-
-function assign_allocation(){
+// function get_tutor(){
 
 
-	if(isset($_POST['submit'])){
-		$tutor = escape_string($_POST['tutor']);
-		$student = escape_string($_POST['student']);
+// }
 
-echo "<p class='mt-3 ml-3'>Tutor {$tutor} is assign to student {$student}.</p>";
+// function get_student(){
 
-}
+
+// }
+
+// function assign_allocation(){
+
+
+// 	if(isset($_POST['submit'])){
+// 		$tutor = escape_string($_POST['tutor']);
+// 		$student = escape_string($_POST['student']);
+
+// echo "<p class='mt-3 ml-3'>Tutor {$tutor} is assign to student {$student}.</p>";
+
+// }
         
-           }
+//            }
 
 function  create_appointment(){
+
 	if (isset($_POST['create_appointment'])) {
+
 		$name = escape_string($_POST['name']);
 		$tutor = escape_string($_POST['tutor']);
-		$date = escape_string($_POST['date']);
+		$date = date('d-m-y');
 		$time = escape_string($_POST['time']);
 		$venue = escape_string($_POST['venue']);
 		$comment = escape_string($_POST['comment']);
 
+
+		if (!empty($name) && !empty($tutor) && !empty($date) && !empty($time) && !empty($venue) && !empty($comment)) {
+			
+
 		$query = query("INSERT INTO appointment(name, tutor, date, time, venue, comment) VALUES ('{$name}','{$tutor}','{$date}','{$time}','{$venue}','{$comment}')");
 		confirm($query);
+
+		echo "<script>alert('Appointment confirmed!')</script>";
+		header("Location: appointment.php");
+
+
+		} else {
+
+			echo "<script>alert('Fields cannot be empty')</script>";
+
+		}
+		
 	}
 }
 
@@ -105,8 +96,21 @@ function create_upload(){
 
 	move_uploaded_file($upload_temp, "images/$upload");
 
-	$query = query("INSERT INTO uploads(upload, date) VALUES ('{$upload}','{$date}')");
-		confirm($query);
+
+		if (!empty($upload) && !empty($date)) {
+
+			$query = query("INSERT INTO uploads(upload, date) VALUES ('{$upload}','{$date}')");
+			confirm($query);
+			echo "<script>alert('Upload confirmed!')</script>";
+			//header("Location: upload.php");
+
+		} else {
+
+			echo "<script>alert('Upload files cannot be empty')</script>";
+
+		}
+
+	
 }
 
 }
