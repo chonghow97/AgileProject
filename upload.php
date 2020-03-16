@@ -28,7 +28,7 @@
 	</div>
 
 	<div class="form-group">
-		<input class="btn btn-primary" type="submit" name="create_upload" value="Upload" onclick="check_upload()">
+		<input class="btn btn-primary" type="submit" name="create_upload" value="Upload" >
 	</div>
 
 </form>
@@ -59,7 +59,7 @@ confirm($query);
       	echo "<th scope='row'>$upload_id</th>";
       	echo "<th>$upload</th>";
       	echo "<th>$date</th>";
-    	echo "<td><a href='upload.php?delete={$upload_id}' class='btn btn-danger'>Delete</a></td>";
+    	echo "<td><a href='upload.php?delete={$upload_id}' class='btn btn-danger' onclick='check_delete()'>Delete</a></td>";
     	echo "</tr>";
 
     }
@@ -89,8 +89,8 @@ if(isset($_GET['delete'])) {
 
 <script type="text/javascript">
   
-  function check_upload() {
-    alert("Upload confirmed!");
+  function check_delete() {
+    alert("Delete confirmed!");
   }
 
 
