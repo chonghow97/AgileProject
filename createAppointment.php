@@ -43,7 +43,7 @@
 
       <div class="form-group">
           <label for="time">Time</label>
-      <input type="time" name="time" class="form-control">
+      <input type="text" name="time" class="form-control">
          
      </div>
  
@@ -63,18 +63,18 @@
     
       <div class="form-group">
 
-      <input type="submit" name="create_appointment" class="btn btn-primary pull-right" value="Appointment" onclick="check_appointment()">
+      <input type="submit" name="create_appointment" class="btn btn-primary pull-right" value="Appointment">
          
      </div>
   </div>
 </form>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   
   function check_appointment() {
     alert("Appointment confirmed!");
   }
 
 
-</script>
+</script> -->
 
