@@ -3,6 +3,7 @@ $title = "E-learning";
 $name = "Student";
 include './include/header.php';
 $sidebar = ['Dashboard','Message','Meetings','Forums','Files / Uploads','Inbox'];
+$url = ['#','#','#','#','#','#','#'];
 $active_index = 0;
 ?>
 

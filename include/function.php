@@ -44,6 +44,16 @@ function fetch_array($result){
 
 // function assign_allocation(){
 
+<<<<<<< HEAD:function.php
+=======
+<div class="form-check col-lg-4 col-md-6 col-xm-12"> <input class="form-check-input" type="checkbox" value="{$row["studId"]}" id="{$row["studId"]}"> <label class="form-check-label" for="{$row["studId"]}"> {$row['username']} </label> </div>
+DELIMETER;
+
+echo $student_links;
+
+   }
+}
+>>>>>>> a8dc777747a5a3097d87883152b76e7abe780b36:include/function.php
 
 // 	if(isset($_POST['submit'])){
 // 		$tutor = escape_string($_POST['tutor']);
