@@ -32,38 +32,51 @@ function fetch_array($result){
 
 /************************ADMIN FUNCTIONS***************************/
 
-// function get_tutor(){
+function get_tutor(){
 
+	$query = query("SELECT * FROM tutor");
+	confirm($query);
+   
+    while($row = mysqli_fetch_array($query)){
 
-// }
+$tutor_links = <<<DELIMETER
 
-// function get_student(){
+<option value="{$row['tutorId']}">{$row['username']}</option>
 
+DELIMETER;
 
-// }
+echo $tutor_links;
 
-// function assign_allocation(){
+   }
+}
 
-<<<<<<< HEAD:function.php
-=======
+function get_student(){
+	$query = query("SELECT * FROM student");
+	confirm($query);
+   
+    while($row = mysqli_fetch_array($query)){
+
+$student_links = <<<DELIMETER
+
 <div class="form-check col-lg-4 col-md-6 col-xm-12"> <input class="form-check-input" type="checkbox" value="{$row["studId"]}" id="{$row["studId"]}"> <label class="form-check-label" for="{$row["studId"]}"> {$row['username']} </label> </div>
 DELIMETER;
 
 echo $student_links;
 
    }
+
 }
->>>>>>> a8dc777747a5a3097d87883152b76e7abe780b36:include/function.php
 
-// 	if(isset($_POST['submit'])){
-// 		$tutor = escape_string($_POST['tutor']);
-// 		$student = escape_string($_POST['student']);
+function assign_allocation(){
+	if(isset($_POST['submit'])){
+		$tutor = escape_string($_POST['tutor']);
+		$student = escape_string($_POST['student']);
 
-// echo "<p class='mt-3 ml-3'>Tutor {$tutor} is assign to student {$student}.</p>";
+echo "<p class='mt-3 ml-3'>Tutor {$tutor} is assign to student {$student}.</p>";
 
-// }
+	}
+}
         
-//            }
 
 function  create_appointment(){
 
@@ -123,7 +136,7 @@ function create_upload(){
 	
 }
 
-}
+};
 
 
 ?>
