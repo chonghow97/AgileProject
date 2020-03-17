@@ -22,29 +22,28 @@ $active_index = 1;
 		<div class="container p-3">
 			<h3>List</h3>
 			<hr>
+      <div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Enter Name Here" aria-label="Recipient's username" aria-describedby="button-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+  </div>
+</div>
 			<table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Lecture</th>
       <th scope="col">Student</th>
+      <th scope="col">Tutor</th>
     </tr>
   </thead>
   <tbody>
+      
     	<?php 
-    		$stu = "Student";
-    		$count = 5;
-    		for ($i=1; $i < 10; $i++) { 
-    			echo "<tr><th scope='row' rowspan='$count'>$i</th>
-      				<td rowspan='$count'><a href='#'>Mark</a></td>
-      				<td><a href='#'>$stu</a></td>";
-    		for ($j=0; $j < $count-1; $j++) { 
-    			echo"<tr> <td><a href='#'>$stu</a></td> </tr>";
-    		}
-    		echo "</tr>";
-    		}
-    		
-    	 ?>
+      $student_name = "Student";
+      $tutor_name = "Tutor";
+        for ($i=0; $i < 10; $i++) { 
+          echo "<tr> <td><a href='#'>$student_name $i</a></td> <td><a href='#'>$tutor_name $i</a></td> </tr>";
+        }
+       ?>
   </tbody>
 </table>
 		</div>
