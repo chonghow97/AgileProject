@@ -98,7 +98,30 @@ if (isset($_POST['create_appointment'])) {
 
 function create_upload(){
 
+  if (isset($_POST['create_upload'])) {
 
+  $upload = $_FILES['upload']['name'];
+  $upload_temp = $_FILES['upload']['tmp_name'];
+  $date = date('d-m-y');
+
+  move_uploaded_file($upload_temp, "images/$upload");
+
+
+    if (!empty($upload) && !empty($date)) {
+
+      $query = query("INSERT INTO uploads(upload, date) VALUES ('{$upload}', now() )");
+      confirm($query);
+      echo "<script>alert('Upload confirmed!')</script>";
+      header("Location: Student_uploads.php");
+
+    } else {
+
+      echo "<script>alert('Upload files cannot be empty')</script>";
+
+    }
+
+  
+}
 
 }
 
