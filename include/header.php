@@ -11,14 +11,20 @@
 </head>
 </style>
 
-<body>
+<body class="container">
 	<header>
 			<nav class="navbar navbar-light">
 				<span class="navbar-brand mb-0 h1">E-learning</span>
-				<ul class="nav justify-content-end">
-					<li class="nav-item">
-						<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><?php echo $name ?></a>
-					</li>
-				</ul>
+				<div class="dropdown justify-content-end">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
 			</nav>
 	</header>
