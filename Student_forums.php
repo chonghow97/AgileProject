@@ -19,26 +19,7 @@ $active_index = 3;
 		<hr>
 	</div>
 </div>
-<div class="fixed-bottom">
-	<?php 
-				//lecture details
-	$L_name = "Stacy";
-	$L_Email = "stacy@gamil.com";
-	$L_PhoneNumber = "+601236152221";
-	?>
-	<li class="list-group-item active bg-dark btn-outline-dark"><label class="font-weight-bold pr-3">TUTOR'S DETAILS</label></li>
-	<?php 
-	if(0){
-		echo "
-		<li class='list-group-item'><label class='font-weight-bold pr-3'>Name:</label>$L_name</li>
-		<li class='list-group-item'><label class='font-weight-bold pr-3'>Email:</label>$L_Email</li>
-		<li class='list-group-item'><label class='font-weight-bold pr-3'>Subject:</label>$L_PhoneNumber</li>
-		";
-	}else{
-		echo "<li class='list-group-item'><label class='font-weight-bold pr-3'>Unassigned</li>";
-	}
-	?>
-</div>
+
 <?php 
 include './include/footer.php';
 ?>
