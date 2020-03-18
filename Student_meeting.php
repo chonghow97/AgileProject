@@ -5,7 +5,7 @@ include './include/function.php';
 include './include/database.php';
 include './include/header.php';
 $sidebar = ['Dashboard','Message','Meetings','Forums','Files / Uploads','Inbox'];
-$url = ['#','#','Student_meeting.php','#','Student_uploads.php','#','#'];
+$url = ['Student_dashboard.php','#','Student_meeting.php','#','Student_uploads.php','#','#'];
 $active_index = 2;
 ?>
 <style type="text/css">
@@ -70,9 +70,9 @@ $active_index = 2;
       echo "<th>$venue</th>";
       echo "<th>$comment</th>";
       echo "<th>$status</th>";
-      echo "<td><a href='Student_meeting.php?approve={$appointment_id  }' class='btn btn-success'>Approve</a></td>";
-      echo "<td><a href='Student_meeting.php?disapprove={$appointment_id}' class='btn btn-warning'>Disapprove</a></td>";
-      echo "<td><a href='Student_meeting.php?delete={$appointment_id}' class='btn btn-danger' onclick='check_delete()'>Delete</a></td>";
+      echo "<td><a href='Student_meeting.php?approve={$appointment_id  }' class='btn btn-outline-success btn-sm'>Approve</a></td>";
+      echo "<td><a href='Student_meeting.php?disapprove={$appointment_id}' class='btn btn-outline-warning btn-sm'>Disapprove</a></td>";
+      echo "<td><a href='Student_meeting.php?delete={$appointment_id}' class='btn btn-outline-danger btn-sm' onclick='check_delete()'>Delete</a></td>";
       echo "</tr>";
 
     }
