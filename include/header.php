@@ -1,5 +1,6 @@
 <?php 
 	include_once 'function.php';
+  include_once 'database.php';
 ?>
 
 
@@ -17,13 +18,13 @@
 				<span class="navbar-brand mb-0 h1">E-learning</span>
 				<div class="dropdown justify-content-end">
   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown link
+    Login as: <?php echo $_SESSION['username']; ?>
   </a>
 
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     <a class="dropdown-item" href="#">Action</a>
     <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
+    <a class="dropdown-item" href="./logout.php">Logout</a>
   </div>
 </div>
 			</nav>
