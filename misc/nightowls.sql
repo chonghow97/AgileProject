@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2020 at 08:54 PM
+-- Generation Time: Mar 18, 2020 at 01:02 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.1.33
 
@@ -30,24 +30,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `allocate` (
   `allocateId` int(11) NOT NULL,
-  `tutorId` int(11) NOT NULL,
-  `tutorUsername` varchar(50) NOT NULL,
-  `studId` int(11) NOT NULL,
-  `studUsername` varchar(50) NOT NULL
+  `allocate_tutorId` int(11) NOT NULL,
+  `allocate_studId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `allocate`
 --
 
-INSERT INTO `allocate` (`allocateId`, `tutorId`, `tutorUsername`, `studId`, `studUsername`) VALUES
-(1, 1, '', 7, ''),
-(2, 1, '', 4, ''),
-(3, 1, '', 8, ''),
-(4, 1, '', 2, ''),
-(5, 1, '', 3, ''),
-(6, 6, '', 5, ''),
-(7, 6, '', 6, '');
+INSERT INTO `allocate` (`allocateId`, `allocate_tutorId`, `allocate_studId`) VALUES
+(44, 8, 4),
+(45, 6, 3),
+(46, 1, 2),
+(47, 2, 1),
+(48, 5, 9);
 
 -- --------------------------------------------------------
 
@@ -56,25 +52,47 @@ INSERT INTO `allocate` (`allocateId`, `tutorId`, `tutorUsername`, `studId`, `stu
 --
 
 CREATE TABLE `appointment` (
-  `appointId` int(11) NOT NULL,
+  `appointment_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `tutor` varchar(50) NOT NULL,
   `date` date NOT NULL,
-  `time` time NOT NULL,
+  `time` varchar(25) NOT NULL,
   `venue` varchar(50) NOT NULL,
-  `comment` text NOT NULL
+  `comment` text NOT NULL,
+  `status` varchar(50) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointment` (`appointId`, `name`, `tutor`, `date`, `time`, `venue`, `comment`) VALUES
-(1, 'dash', 'tan', '2020-03-12', '03:01:00', 'ih', 'srg'),
-(2, 'dash', 'tan', '2020-03-12', '03:01:00', 'ih', 'srg'),
-(3, 'Mad', 'aa', '2020-03-20', '21:32:00', 'vwve', 'ewvvew'),
-(7, 'Jude', 'Jane', '2020-02-28', '10:00:00', 'Foyer', 'For assignment purpose..'),
-(12, 'Mad', 'dash', '2020-03-01', '18:45:00', 'hall', 'exam purpose');
+INSERT INTO `appointment` (`appointment_id`, `name`, `tutor`, `date`, `time`, `venue`, `comment`, `status`) VALUES
+(37, 'Jude', 'Kiko', '2017-03-20', '9.00PM', 'room2', 'pending fyp', 'not approve'),
+(38, 'JJ', 'Kiko', '2017-03-20', '9.00PM', 'Foyer', 'meeting', 'pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message`
+--
+
+CREATE TABLE `message` (
+  `message_id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `message_tutorId` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`message_id`, `title`, `message_tutorId`, `content`, `date`) VALUES
+(1, 'COMP1687 Web Application Development', 1, 'hello', '2020-03-18'),
+(2, 'COMP1687 Web Application Development', 3, 'hello', '2020-03-18'),
+(3, 'Final Year Project', 8, 'Proposal submission', '2020-03-18'),
+(4, 'test', 4, 'nexd', '2020-03-18');
 
 -- --------------------------------------------------------
 
@@ -105,7 +123,8 @@ INSERT INTO `student` (`studId`, `username`, `password`, `firstName`, `lastName`
 (7, 'allanjohns', '*90A1E02148BBD73DA1D7BD9842DA87BE8A418712', 'Allan', 'Johns', 'allanjohn123@gmail.com'),
 (8, 'arelyholland', '*2396488DAB1391917F9F4547C7B1D3F5E7B0A3A9', 'Arely', 'Holland', 'arelyholland123@gmail.com'),
 (9, 'tyronechang', '*11BD51004DEED40B977E5F919D2E6E6C293A961D', 'Tyrone', 'Chang', 'tyronechang123@gmail.com'),
-(10, 'geraldhansen', '*3E7A3F571C1BFC3E88BB2AC74B0ED3354AA27988', 'Gerald', 'Hansen', 'geraldhansen123@gmail.com');
+(10, 'geraldhansen', '*3E7A3F571C1BFC3E88BB2AC74B0ED3354AA27988', 'Gerald', 'Hansen', 'geraldhansen123@gmail.com'),
+(11, 'SMJ', '123', 'Samuel Matthew', 'Joel', 'smj@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -138,6 +157,27 @@ INSERT INTO `tutor` (`tutorId`, `username`, `password`, `firstName`, `lastName`,
 (9, 'kysononeal', '*1B7AFB3189046E2F5439DE349219C08A3A543F6F', 'Kyson', 'Oneal', 'kysononeal123@gmail.com'),
 (10, 'shawncarlson', '*F0DE2018D6B92B3EF53B849390075AA0EBC407F1', 'Shawn', 'Carlson', 'shawncarlson123@gmail.com');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uploads`
+--
+
+CREATE TABLE `uploads` (
+  `upload_id` int(11) NOT NULL,
+  `upload` text NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uploads`
+--
+
+INSERT INTO `uploads` (`upload_id`, `upload`, `date`) VALUES
+(22, 'images.png', '2020-03-18'),
+(23, 'tarian-singa-tanglung.png', '2020-03-18'),
+(24, 'courseworks.PDF', '2020-03-18');
+
 --
 -- Indexes for dumped tables
 --
@@ -147,14 +187,20 @@ INSERT INTO `tutor` (`tutorId`, `username`, `password`, `firstName`, `lastName`,
 --
 ALTER TABLE `allocate`
   ADD PRIMARY KEY (`allocateId`),
-  ADD KEY `tutorId` (`tutorId`),
-  ADD KEY `studId` (`studId`);
+  ADD KEY `tutorId` (`allocate_tutorId`),
+  ADD KEY `studId` (`allocate_studId`);
 
 --
 -- Indexes for table `appointment`
 --
 ALTER TABLE `appointment`
-  ADD PRIMARY KEY (`appointId`);
+  ADD PRIMARY KEY (`appointment_id`);
+
+--
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`message_id`);
 
 --
 -- Indexes for table `student`
@@ -169,6 +215,12 @@ ALTER TABLE `tutor`
   ADD PRIMARY KEY (`tutorId`);
 
 --
+-- Indexes for table `uploads`
+--
+ALTER TABLE `uploads`
+  ADD PRIMARY KEY (`upload_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -176,25 +228,37 @@ ALTER TABLE `tutor`
 -- AUTO_INCREMENT for table `allocate`
 --
 ALTER TABLE `allocate`
-  MODIFY `allocateId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `allocateId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `appointId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `studId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `studId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tutor`
 --
 ALTER TABLE `tutor`
   MODIFY `tutorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `uploads`
+--
+ALTER TABLE `uploads`
+  MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
@@ -204,8 +268,8 @@ ALTER TABLE `tutor`
 -- Constraints for table `allocate`
 --
 ALTER TABLE `allocate`
-  ADD CONSTRAINT `allocate_ibfk_1` FOREIGN KEY (`studId`) REFERENCES `student` (`studId`),
-  ADD CONSTRAINT `allocate_ibfk_2` FOREIGN KEY (`tutorId`) REFERENCES `tutor` (`tutorID`);
+  ADD CONSTRAINT `allocate_ibfk_1` FOREIGN KEY (`allocate_studId`) REFERENCES `student` (`studId`),
+  ADD CONSTRAINT `allocate_ibfk_2` FOREIGN KEY (`allocate_tutorId`) REFERENCES `tutor` (`tutorID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
