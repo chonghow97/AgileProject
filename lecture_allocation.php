@@ -51,7 +51,7 @@ $active_index = 1;
       echo "<th scope='row'>$allocateId</th>";
       echo "<th>$allocate_tutorId</th>";
       echo "<th>$allocate_studId</th>";
-      echo "<td><a href='lecture_allocation.php?delete={$allocateId}' class='btn btn-danger' onclick='check_delete()'>Delete</a></td>";
+      echo "<td><a href='lecture_allocation.php?delete={$allocateId}' class='btn btn-outline-danger btn-sm' onclick='check_delete()'>Delete</a></td>";
       echo "</tr>";
 
     }
