@@ -17,9 +17,12 @@
 			<nav class="navbar navbar-light">
 				<span class="navbar-brand mb-0 h1">E-learning</span>
 				<div class="dropdown justify-content-end">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Login as: <?php echo $_SESSION['username']; ?>
-  </a>
+          <?php 
+            if(isset($_SESSION['username'])){
+              echo "<a class='btn btn-secondary dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Welcome, {$_SESSION['username']}</a>";
+            }
+           ?>
+  
 
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     <a class="dropdown-item" href="#">Action</a>

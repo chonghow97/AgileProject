@@ -30,12 +30,23 @@ margin-left: 40px;
 
     <div class="form-group">
     <input name="email" type="email" placeholder="Enter Email address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <small class="text-danger">Invalid Username. Please Check Again!</small>
+    <!-- invalid username trigger -->
+    <?php 
+      if(0){
+        echo "<small class='text-danger'>Invalid Username. Please Check Again!</small>";
+      }
+
+     ?>
   </div>
 
   <div class="form-group">
     <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
-    <small class="text-danger">Wrong Password. Please check again</small>
+    <!-- Wrong password trigger -->
+    <?php 
+        if(0){
+          echo "<small class='text-danger'>Wrong Password. Please check again</small>";
+        }
+     ?>
   </div>
 
   <div class="form-group form-check">
