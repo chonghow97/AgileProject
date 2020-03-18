@@ -5,7 +5,7 @@ include './include/function.php';
 include './include/database.php';
 include './include/header.php';
 $sidebar = ['Dashboard','Message','Meetings','Forums','Files / Uploads','Inbox'];
-$url = ['Student_dashboard.php','#','Student_meeting.php','#','Student_uploads.php','#','#'];
+$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','#','Student_uploads.php','Student_inbox.php'];
 $active_index = 4;
 ?>
 <style type="text/css">
@@ -82,6 +82,15 @@ $active_index = 4;
 
 
     ?>
+
+<script type="text/javascript">
+   
+  function check_delete() {
+    alert("Delete confirmed!");
+  }
+
+
+ </script>
   </div>
 </div>
 <div class="fixed-bottom">
