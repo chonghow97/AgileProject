@@ -25,20 +25,11 @@ margin-left: 40px;
   <form class="p-3 border text-left col-5 mx-auto" action="admin_dashboard.php">
     <div class="form-group">
     <input type="email" Placeholder="Email address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <?php 
-      if(0){
-        echo "<small class='text-danger'>Invalid Username. Please Check Again!</small>";
-      }
-     ?>
+    <small class="text-danger">Invalid Username. Please Check Again!</small>
   </div>
   <div class="form-group">
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    <?php 
-      if(0){
-        echo "<small class='text-danger'>Wrong Password. Please check again</small>";
-      }
-      
-     ?>
+    <small class="text-danger">Wrong Password. Please check again</small>
   </div>
   <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">

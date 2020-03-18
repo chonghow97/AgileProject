@@ -1,11 +1,9 @@
 <?php 
 $title = "E-learning";
 $name = "Student";
-include './include/function.php';
-include './include/database.php';
 include './include/header.php';
 $sidebar = ['Dashboard','Message','Meetings','Forums','Files / Uploads','Inbox'];
-$url = ['Student_dashboard.php','#','Student_meeting.php','#','Student_uploads.php','#','#'];
+$url = ['#','#','#','#','#','#','#'];
 $active_index = 0;
 ?>
 
