@@ -4,139 +4,69 @@ $name = "Student";
 include './include/function.php';
 include './include/database.php';
 include './include/header.php';
-$sidebar = ['Dashboard','Message','Meetings','Forums','Files / Uploads','Inbox'];
-$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','#','Student_uploads.php','Student_inbox.php'];
+$sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
+$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
 $active_index = 0;
 ?>
 
+<!-- toast -->
+<div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
+  <a href="#">New Message From<strong>{Lecture Name}</strong></a>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 <div class="container-fluid row">
 	<div class="list-group col-3 mt-3">
 
-		<?php include './include/sidebar.php'; ?>
-		<div class="fixed-bottom">
-			<?php 
-				//lecture details
-				$L_name = "Stacy";
-				$L_Email = "stacy@gamil.com";
-				$L_PhoneNumber = "+601236152221";
-			 ?>
-			<li class="list-group-item active bg-dark btn-outline-dark"><label class="font-weight-bold pr-3 ">TUTOR'S DETAILS</li>
-				<?php 
-					if(0){
-						echo "
-							<li class='list-group-item'><label class='font-weight-bold pr-3'>Name:</label>$L_name</li>
-							<li class='list-group-item'><label class='font-weight-bold pr-3'>Email:</label>$L_Email</li>
-							<li class='list-group-item'><label class='font-weight-bold pr-3'>Subject:</label>$L_PhoneNumber</li>
-						";
-					}else{
-						echo "<li class='list-group-item'><label class='font-weight-bold pr-3'>Unassigned</li>";
-					}
-				 ?>
-			
-		</div>
+		<?php 
+		include './include/sidebar.php'; 
+		include './include/lecture-details.php';
+		?>
+		
 			
 		</div>
 
 
-		<div class="col-9">
-			<div class="row">
-				<!--Inbox -->
-				<div class="col mt-3">
-					<div class="card" style="width: 18rem;">
-						<div class="card-header font-weight-bold">
-							Inbox
-						</div>
-						<ul class="list-group list-group-flush">
-							<?php
-							$title = "Github";
-							$content = "Hello User..";
-							$date = "12FEB";
-							$Empty = "<li class='list-group-item font-weight-lighter font-italic text-center'>Empty</li>";
-							if(1){
-								for($x=0;$x<5;$x++){
-								echo "<li class='list-group-item'>
-								<label class='font-weight-bold'>$title</label>
-								<br>
-								<small>$content<label class='float-right font-weight-bold text-uppercase'>$date</label></small>
-								</li>";
-								}
-							}else{
-								echo $Empty;
-							} 
-							
-							?>
-						</ul>
-					</div>
-				</div>
+		<div class="col-9 row">
+			<!-- task -->
+			<div class="p-3 col-lg-6">
+				<h3>Task</h3>
+				<!-- yellow -->
+				<ul class="list-group col">
+				  <li class="list-group-item list-group-item-warning">&nbsp;</li>
+				  <li class="list-group-item"><a href="#">Example</a></li>
+				  <li class="list-group-item"><a href="#">Example</a></li>
+				  <li class="list-group-item"><a href="#">Example</a></li>
 
+				</ul>
+				<ul class="list-group mt-3 col">
+				  <li class="list-group-item list-group-item-danger">&nbsp;</li>
+				  <li class="list-group-item"><a href="#">Example</a></li>
+				  <li class="list-group-item"><a href="#">Example</a></li>
+				  <li class="list-group-item"><a href="#">Example</a></li>
+				</ul>
+				<ul class="list-group mt-3 col">
+				  <li class="list-group-item list-group-item-success">&nbsp;</li>
+				  <li class="list-group-item"><a href="#">Example</a></li>
+				  <li class="list-group-item"><a href="#">Example</a></li>
+				  <li class="list-group-item"><a href="#">Example</a></li>
+				</ul>
+			</div>
 
-				<!--Files -->
-				<div class="col mt-3">
-					<div class="card" style="width: 18rem;">
-						<div class="card-header font-weight-bold ">
-							Files
-						</div>
-						<ul class="list-group list-group-flush">
-							<?php 
-								$file_name = "123.docx";
-								$date = "12FEB";
-								$url = "#";
+			<!-- blog -->
+			<div class="p-3 col-lg-6">
+				<h3>Blog</h3>
+				<ul class="list-group">
+				  <?php 
+				  	$title = "Title 1";
+				  	$author = "sample 1";
+				  	for ($i=0; $i < 5; $i++) { 
+				  		echo "<li class='list-group-item'><a href='#'>$title</a><br><small>By: $author</small></li>";
+				  	}
+				   ?>
 
-								if (1) {
-									for ($i=0; $i < 5; $i++) { 
-										echo "<li class='list-group-item'><a href='$url'>$file_name</a><b class='float-right'>$date</b></li>";
-									}
-								}else{
-									echo $Empty;
-								}
-								
-								
-							 ?>
-							
-						</ul>
-					</div>
-				</div>
-				<!--Meetings -->
-				<div class="col mt-3">
-					<div class="card" style="width: 18rem;">
-						<div class="card-header font-weight-bold">
-							Meetings
-						</div>
-						<ul class="list-group list-group-flush">
-
-							<?php 
-								if(1){
-									//pending
-									echo "<li class='list-group-item'>Cras justo odio <span class='float-right font-weight-bold font-italic'>Pending</span></li>";
-
-									//approved
-									echo "<li class='list-group-item'>Dapibus ac facilisis in <span class='float-right font-weight-bold font-italic text-success'>Approved</span></li>";
-									//declined
-									echo "<li class='list-group-item'>Vestibulum at eros <span class='float-right font-weight-bold font-italic text-danger'>Declined</span></li>";
-								}else{
-									//empty
-									echo $Empty;
-								}
-							 ?>
-
-							
-							
-						</ul>
-					</div>
-				</div>
-				<!--Forums -->
-				<div class="col mt-3">
-					<div class="card" style="width: 18rem;">
-						<div class="card-header font-weight-bold">
-							Forums
-						</div>
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Cras justo odio <span class="float-right font-italic">just now</span></li>
-							<li class="list-group-item">Cras justo odio <span class="float-right font-italic">just now</span></li>
-							<li class="list-group-item">Cras justo odio <span class="float-right font-italic">just now</span></li>
-						</ul>
-					</div>
-				</div>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -144,8 +74,9 @@ $active_index = 0;
 	include './include/footer.php';
 	?>
 	<script type="text/javascript">
+		$("#nav").addClass("bg-primary");
 		$(function () {
-			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("active bg-dark btn-outline-dark");
+			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
 		})
 	</script>
 
