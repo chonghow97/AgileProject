@@ -4,148 +4,104 @@ $name = "Student";
 include './include/function.php';
 include './include/database.php';
 include './include/header.php';
-$sidebar = ['Dashboard','Message','Meetings','Forums','Files / Uploads','Inbox'];
-$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','#','Student_uploads.php','Student_inbox.php'];
+$sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
+$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
 $active_index = 2;
 ?>
 <style type="text/css">
+  #chat{
+    bottom: 33px;
+  }
 </style>
 <div class="container-fluid row">
-  <div class="list-group col-3 mt-3">
-    <?php include './include/sidebar.php'; ?>
-  </div>
-  <div class="col-6 mx-auto">
-    <h3>Meetings</h3>
-    <hr>
-    <form action="" method="post" >
+  <div class="list-group col-3">
 
-  <div class="col">
+    <?php 
+    include './include/sidebar.php'; 
+    include './include/lecture-details.php';
+    ?>
+    
 
-  <div class="form-group">
-    <h1>List of Appointment
-    <a style="float: right;" class="btn btn-primary" href="Student_create_meeting.php" >Add New</a>
-    </h1>
   </div>
 
 
+  <div class="col-9 row p-3">
+    <div class="container border border-primary">
+<?php create_appointment(); ?>
+      <!-- Meeting -->
+      <h3>Meeting</h3>
+      <form class="form-inline mt-3" action="" method="post" enctype="">
 
-<table class="table table-striped">
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="title">Title</label>
+          <input type="text" name="title" class="form-control border-primary" placeholder="Ex: Meetings..." style="width: 45vw">
+        </div>
 
-  <thead>
-    <tr>
-      <th scope="col">No</th>
-      <th scope="col">Student</th>
-      <th scope="col">Tutor</th>
-      <th scope="col">Date</th>
-      <th scope="col">Time</th>
-      <th scope="col">Venue</th>
-      <th scope="col">Comment</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="date">Date</label>
+          <input type="date" name="date" class="form-control border-primary">
+        </div>
+
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="time">Time</label>
+          <input type="time" name="time" class="form-control border-primary">
+        </div>
+
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="type">Type of Meeting</label>
+            <select value="type" name="type">
+              <option value="type">Select Options</option>
+              <option>Virtual</option>Video Call
+              <option>Real</option>
+            </select>
+        </div>
 
 <?php
 
-  $query = query("SELECT * FROM appointment");
-  confirm($query);
-   
-    while($row = mysqli_fetch_assoc($query)){
+// $query = query("SELECT * FROM tutor WHERE email = '{$email}' ");
+//     confirm($query);
 
-      $appointment_id = $row['appointment_id'];
-      $name = $row['name'];
-      $tutor = $row['tutor'];
-      $date = $row['date'];
-      $time = $row['time'];
-      $venue = $row['venue'];
-      $comment = $row['comment'];
-      $status = $row['status'];
+//     while ($row = fetch_array($query)) {
+      
+//     $lecture_login_id = $row['tutorId'];
+//     $lecture_login_username = $row['username'];
 
-      echo "<tr>";
-      echo "<th scope='row'>$appointment_id</th>";
-      echo "<th>$name</th>";
-      echo "<th>$tutor</th>";
-      echo "<th>$date</th>";
-      echo "<th>$time</th>";
-      echo "<th>$venue</th>";
-      echo "<th>$comment</th>";
-      echo "<th>$status</th>";
-      echo "<td><a href='Student_meeting.php?approve={$appointment_id  }' class='btn btn-outline-success btn-sm'>Approve</a></td>";
-      echo "<td><a href='Student_meeting.php?disapprove={$appointment_id}' class='btn btn-outline-warning btn-sm'>Disapprove</a></td>";
-      echo "<td><a href='Student_meeting.php?delete={$appointment_id}' class='btn btn-outline-danger btn-sm' onclick='check_delete()'>Delete</a></td>";
-      echo "</tr>";
+//     }
 
-    }
 
-                                    
 ?>
 
-  </tbody>
-</table>
 
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="venue">Venue</label>
+          <select value="venue" name="venue">
+              <option value="venue">Select Options</option>
+              <option>Hall</option>
+              <option>Foyer</option>
+              <option>Meeting Room</option>
+            </select>
+        </div>
+
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="comment">Comment</label>
+          <input type="text" name="comment" class="form-control border-primary" placeholder="Ex: Appointment for assignment questions..." style="width: 45vw; height:10vw">
+        </div>
+
+        <br>
+        <button type="submit" name="create_appointment" class="btn btn-outline-primary mb-2" value="Appointment">Send</button>
+      </form>
+    </div>
   </div>
-  <?php 
-
-if(isset($_GET['delete'])) {
-
-    $delete_appointment_id = $_GET['delete'];
-    
-    $query = "DELETE FROM appointment WHERE appointment_id = {$delete_appointment_id} ";
-    $delete_query = mysqli_query($connection, $query);
-    
-    header("Location: Student_meeting.php");
-}
-
-
- ?>
-
- <script type="text/javascript">
-   
-  function check_delete() {
-    alert("Delete confirmed!");
-  }
-
-
- </script>
-
-
-</form>
-  </div>
-</div>
-<div class="fixed-bottom">
-  <?php 
-        //lecture details
-  $L_name = "Stacy";
-  $L_Email = "stacy@gamil.com";
-  $L_PhoneNumber = "+601236152221";
-  ?>
-  <li class="list-group-item active bg-dark btn-outline-dark"><label class="font-weight-bold pr-3">TUTOR'S DETAILS</label></li>
-  <?php 
-  if(0){
-    echo "
-    <li class='list-group-item'><label class='font-weight-bold pr-3'>Name:</label>$L_name</li>
-    <li class='list-group-item'><label class='font-weight-bold pr-3'>Email:</label>$L_Email</li>
-    <li class='list-group-item'><label class='font-weight-bold pr-3'>Subject:</label>$L_PhoneNumber</li>
-    ";
-  }else{
-    echo "<li class='list-group-item'><label class='font-weight-bold pr-3'>Unassigned</li>";
-  }
-  ?>
 </div>
 <?php 
 include './include/footer.php';
 ?>
 <script type="text/javascript">
   $(function () {
-    $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("active bg-dark btn-outline-dark");
+    $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
   })
-  // function check_appointment() {
- //    alert("Appointment confirmed!");
- //  }
-
 </script>
-  
-  
+
 
 
 
