@@ -1,143 +1,89 @@
 <?php 
 $title = "E-learning";
 $name = "Student";
-include './include/function.php';
-include './include/database.php';
+// include './include/function.php';
+// include './include/database.php';
 include './include/header.php';
-$sidebar = ['Dashboard','Message','Meetings','Forums','Files / Uploads','Inbox'];
-$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','#','Student_uploads.php','Student_inbox.php'];
+$sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
+$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
 $active_index = 1;
 ?>
 <style type="text/css">
+  #chat{
+    bottom: 33px;
+  }
 </style>
 <div class="container-fluid row">
-	<div class="list-group col-3 mt-3">
-		<?php include './include/sidebar.php'; ?>
-	</div>
-	<div class="col-6 mx-auto">
-		<h3>Message</h3>
-		<hr>
+  <div class="list-group col-3">
 
-<?php 
+    <?php 
+    include './include/sidebar.php'; 
+    include './include/lecture-details.php';
+    ?>
+    
 
-if (isset($_POST['create_message'])) {
+  </div>
 
-    $title = escape_string($_POST['title']);
-    $message_tutorId = escape_string($_POST['tutor']);
-    $content = escape_string($_POST['content']);
-    $date = date('d-m-y');
 
-    if (!empty($title) && !empty($message_tutorId) && !empty($content) && !empty($date)) {
-      
+  <div class="col-9 row p-3">
+    <div class="container border border-primary">
+      <!-- conversation -->
+      <div class="d-flex align-items-end flex-column mb-3 p-3" style="height: 78vh">
+<?php
 
-    $query = query("INSERT INTO message(title, message_tutorId, content, date) VALUES ('{$title}','{$message_tutorId}','{$content}',now())");
+    $query = query("SELECT * FROM message");
     confirm($query);
 
-    echo "<script>alert('Message is sent!')</script>";
-    header("Location: Student_inbox.php");
+    while ($row = fetch_array($query)) {
+      
+    $username = $row['username'];
+    $message = $row['message'];
 
-
-    } else {
-
-      echo "<script>alert('Fields cannot be empty')</script>";
+    echo "<h4>{$_SESSION['username']}</h4>";
+    echo "<p class='bg-primary p-2 text-white rounded-sm mb-3' >{$message}</p>";
+    //echo "<h4>{$_SESSION['username']}</h4>";
+    // echo "<p class='border border-primary p-2 text-primary rounded-sm mb-3'>{$message}</p>";
 
     }
-    
-  }
+
+?>        
+      </div>
+      <!-- chat -->
+<?php
+
+if (isset($_POST['submit'])) {
+
+  $message = escape_string($_POST['message']);
+  $date = date('d-m-y');
+
+  $query = query("INSERT INTO message(username, message, date) VALUES ('{$_SESSION['username']}', '{$message}', now())");
+  confirm($query);
+
+  echo "<h4 style='color:blue;'>{$_SESSION['username']}</h4>";
+  echo "<p>{$message}</p>";
+}
+
 
 ?>
 
-
-	<form action="" method="post"enctype="multipart/form-data">
-
-  <div class="col">
-
-     <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" name="title" class="form-control">
-         
-     </div>
- 
-     	<div class="form-group">
-     	<label for="tutor">Tutor</label>
-		<select name="tutor" id="">
-
-			<option value="tutor">Select Options</option>
-<?php 
-
-$select_tutorId = query("SELECT * FROM tutor");
-confirm($select_tutorId);
-
- while($row = mysqli_fetch_assoc($select_tutorId)){
-        $tutorId = $row['tutorId'];
-        $username = $row['username'];
-
-        echo "<option value='{$tutorId}'>{$username}</option>";
-
-         }
-
-?>
-
-
-		</select>
-
-	</div>
-
-
-<!--       <div class="form-group">
-          <label for="date">Date</label>
-      <input type="date" name="date" class="form-control">
-         
-     </div> -->
-
-
-      <div class="form-group">
-          <label for="content">Message</label>
-      <textarea type="text" name="content" class="form-control"></textarea>
-         
-     </div>
-
-    
-      <div class="form-group">
-
-      <input type="submit" name="create_message" class="btn btn-outline-dark pull-right" value="Send" >
-         
-     </div>
+      <form class="form-inline mt-3" method="post">
+        <div class="form-group mx-sm-3 mb-2">
+          <input type="text" name="message" class="form-control border-primary" id="inputPassword2" placeholder="Chat here..." style="width: 50vw">
+        </div>
+        <button type="submit" name="submit" class="btn btn-outline-primary mb-2">Send</button>
+      </form>
+    </div>
   </div>
-</form>
-	</div>
-</div>
-<div class="fixed-bottom">
-	<?php 
-				//lecture details
-	$L_name = "Stacy";
-	$L_Email = "stacy@gamil.com";
-	$L_PhoneNumber = "+601236152221";
-	?>
-	<li class="list-group-item active bg-dark btn-outline-dark"><label class="font-weight-bold pr-3">TUTOR'S DETAILS</label></li>
-	<?php 
-	if(0){
-		echo "
-		<li class='list-group-item'><label class='font-weight-bold pr-3'>Name:</label>$L_name</li>
-		<li class='list-group-item'><label class='font-weight-bold pr-3'>Email:</label>$L_Email</li>
-		<li class='list-group-item'><label class='font-weight-bold pr-3'>Subject:</label>$L_PhoneNumber</li>
-		";
-	}else{
-		echo "<li class='list-group-item'><label class='font-weight-bold pr-3'>Unassigned</li>";
-	}
-	?>
 </div>
 <?php 
 include './include/footer.php';
 ?>
 <script type="text/javascript">
-	$(function () {
-		$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("active bg-dark btn-outline-dark");
-	})
-
+  $(function () {
+    $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
+  })
 </script>
-  
-  
+
 
 
 
