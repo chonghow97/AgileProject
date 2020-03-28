@@ -22,29 +22,22 @@ margin-left: 40px;
 <div class="container-md p-3 text-center mt-5">
 <img src="https://dummyimage.com/200x200/343a40/fff.png&text=Logo+Here" alt="..." class="img-thumbnail">
 <h1 class="p-3">E-learning</h1>
-  <form class="p-3 border text-left col-5 mx-auto" action="admin_dashboard.php">
+
+  <form class="p-3 border text-left col-5 mx-auto" action="#">
+  <?php admin_login(); ?>
     <div class="form-group">
-    <input type="email" Placeholder="Email address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <?php 
-      if(0){
-        echo "<small class='text-danger'>Invalid Username. Please Check Again!</small>";
-      }
-     ?>
+    <input name="email" type="email" placeholder="Enter Email address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <!-- <small class="text-danger">Invalid Username. Please Check Again!</small> -->
   </div>
   <div class="form-group">
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    <?php 
-      if(0){
-        echo "<small class='text-danger'>Wrong Password. Please check again</small>";
-      }
-      
-     ?>
+    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+    <!-- <small class="text-danger">Wrong Password. Please check again</small> -->
   </div>
   <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Remember Me</label>
   </div>
-  <button type="submit" class="btn btn-outline-dark">Submit</button>
+  <button type="submit" name="admin_login" class="btn btn-outline-dark">Submit</button>
   </form>
 </div>
 <?php 

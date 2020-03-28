@@ -1,6 +1,6 @@
 <?php 
   $title = "E-learning";
-  $name = "";
+  $name = ""; 
 include './include/function.php';
 include './include/database.php';
 include './include/header.php';
@@ -18,7 +18,7 @@ margin-left: 40px;
 </style>
 <!-- Sidebar -->
   <div class="float-left vertical-text p-1">
-  <a href="./" class="btn btn-primary">Student</a>
+  <a href="./index.php" class="btn btn-primary">Student</a>
   <a href="./admin_index.php" class="btn btn-secondary ml-3">Admin</a>
   <a href="./lecture_index.php" class="btn btn-warning ml-3">Lecture</a>
 </div>
@@ -26,27 +26,16 @@ margin-left: 40px;
 <img src="https://dummyimage.com/200x200/007bff/fff.png&text=Logo+Here" alt="..." class="img-thumbnail">
 <h1 class="p-3 text-primary">E-learning</h1>
 
-  <form class="p-3 border border-primary text-left col-5 mx-auto" action="login.php" method="post">
-
+  <form class="p-3 border border-primary text-left col-5 mx-auto" action="#" method="post">
+ <?php login(); ?>
     <div class="form-group">
     <input name="email" type="email" placeholder="Enter Email address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <!-- invalid username trigger -->
-    <?php 
-      if(0){
-        echo "<small class='text-danger'>Invalid Username. Please Check Again!</small>";
-      }
-
-     ?>
+    <!-- <small class="text-danger">Invalid Username. Please Check Again!</small> -->
   </div>
 
   <div class="form-group">
     <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
-    <!-- Wrong password trigger -->
-    <?php 
-        if(0){
-          echo "<small class='text-danger'>Wrong Password. Please check again</small>";
-        }
-     ?>
+    <!-- <small class="text-danger">Wrong Password. Please check again</small> -->
   </div>
 
   <div class="form-group form-check">
