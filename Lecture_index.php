@@ -19,32 +19,24 @@ margin-left: 40px;
   <a href="./admin_index.php" class="btn btn-secondary ml-3">Admin</a>
   <a href="./lecture_index.php" class="btn btn-warning ml-3">Lecture</a>
 </div>
-
 <div class="container-md p-3 text-center mt-5">
 <img src="https://dummyimage.com/200x200/ffc107/000.png&text=Logo+Here" alt="..." class="img-thumbnail">
 <h1 class="p-3">E-learning</h1>
-  <form class="p-3 border border-warning text-left col-5 mx-auto">
+  <form class="p-3 border border-warning text-left col-5 mx-auto" action="#" method="post">
+  <?php lecture_login(); ?>
     <div class="form-group">
-    <input type="email" Placeholder="Email address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <?php 
-      if(0){
-        echo "<small class='text-danger'>Invalid Username. Please Check Again!</small>";
-      }
-     ?>
+    <input name="email" type="email" placeholder="Enter Email address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <!-- <small class="text-danger">Invalid Username. Please Check Again!</small> -->
   </div>
   <div class="form-group">
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    <?php 
-        if(0){
-          echo "<small class='text-danger'>Wrong Password. Please check again</small>";
-        }
-     ?>
+    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+    <!-- <small class="text-danger">Wrong Password. Please check again</small> -->
   </div>
   <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label " for="exampleCheck1">Remember Me</label>
   </div>
-  <button type="submit" class="btn btn-outline-warning">Submit</button>
+  <button type="submit" name="lecture_login" class="btn btn-outline-warning">Submit</button>
   </form>
 </div>
 <?php 
