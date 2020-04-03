@@ -1,9 +1,7 @@
 <?php 
 $title = "E-learning";
 $name = "Student";
-include './include/function.php';
-include './include/database.php';
-include './include/header.php';
+include 'include/header.php';
 $sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
 $url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
 $active_index = 2;
@@ -18,7 +16,7 @@ $active_index = 2;
 
     <?php 
     include './include/sidebar.php'; 
-    include './include/lecture-details.php';
+    //include './include/lecture-details.php';
     ?>
     
 
@@ -47,38 +45,41 @@ $active_index = 2;
           <input type="time" name="time" class="form-control border-primary">
         </div>
 
-        <div class="form-group mx-sm-3 mb-2">
+        <div class="form-group col-xs-4">
           <label for="type">Type of Meeting</label>
-            <select value="type" name="type">
+            <select typr="type" name="meeting_type">
               <option value="type">Select Options</option>
-              <option>Virtual</option>Video Call
+              option>
+              <option>Virtual</option>
               <option>Real</option>
+
+<?php 
+
+// $query = query("SELECT * FROM meeting_data");
+// confirm($query);
+
+// while ($row = mysqli_fetch_assoc($query)) {
+//         $meetingData_Id = $row['meetingData_Id'];
+//         $meeting_type = $row['meeting_type'];
+
+//         echo "<option value='{$meetingData_Id}'>{$meeting_type}</option>";
+
+// }
+
+?>
             </select>
         </div>
 
-<?php
-
-// $query = query("SELECT * FROM tutor WHERE email = '{$email}' ");
-//     confirm($query);
-
-//     while ($row = fetch_array($query)) {
-      
-//     $lecture_login_id = $row['tutorId'];
-//     $lecture_login_username = $row['username'];
-
-//     }
-
-
-?>
 
 
         <div class="form-group mx-sm-3 mb-2">
           <label for="venue">Venue</label>
           <select value="venue" name="venue">
               <option value="venue">Select Options</option>
-              <option>Hall</option>
+              <option>None</option>
+              <option>Classroom</option>
               <option>Foyer</option>
-              <option>Meeting Room</option>
+              <option>Hall</option>
             </select>
         </div>
 
@@ -101,7 +102,8 @@ include './include/footer.php';
     $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
   })
 </script>
-
+  
+  
 
 
 

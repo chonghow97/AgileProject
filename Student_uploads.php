@@ -1,9 +1,7 @@
 <?php 
 $title = "E-learning";
 $name = "Student";
-include './include/function.php';
-include './include/database.php';
-include './include/header.php';
+include 'include/header.php';
 $sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
 $url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
 $active_index = 4;
@@ -14,8 +12,8 @@ $active_index = 4;
   <div class="list-group col-3">
 
     <?php 
-    include './include/sidebar.php'; 
-    include './include/lecture-details.php';
+    include 'include/sidebar.php'; 
+    //include 'include/lecture-details.php';
     ?>
     
 
@@ -108,6 +106,7 @@ include './include/footer.php';
     $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
   })
 </script>
+
 
 
 

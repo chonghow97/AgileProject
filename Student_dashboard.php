@@ -1,14 +1,12 @@
 <?php 
 $title = "E-learning";
 $name = "Student";
-include './include/function.php';
-include './include/database.php';
-include './include/header.php';
+include 'include/header.php';
 $sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
 $url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
 $active_index = 0;
 ?>
-
+ 
 <!-- toast -->
 <div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
   <a href="#">New Message From<strong>{Lecture Name}</strong></a>
@@ -20,8 +18,8 @@ $active_index = 0;
 	<div class="list-group col-3 mt-3">
 
 		<?php 
-		include './include/sidebar.php'; 
-		include './include/lecture-details.php';
+		include 'include/sidebar.php'; 
+		//include 'include/lecture-details.php';
 		?>
 		
 			
@@ -79,6 +77,9 @@ $active_index = 0;
 			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
 		})
 	</script>
+
+
+
 
 
 
