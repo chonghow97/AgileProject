@@ -1,11 +1,25 @@
 <?php 
   $title = "E-learning";
   $name = ""; 
-include './include/function.php';
-include './include/database.php';
-include './include/header.php';
-
+  include_once 'include/function.php';
+  include_once 'include/database.php';
 ?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title><?php echo $title ?></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+</style>
+
+<body class="container">
+  <header>
+      <nav class="navbar navbar-light">
+        <span class="navbar-brand mb-0 h1">E-learning</span>
+      </nav>
+  </header>
 <style type="text/css">
   *{
     //outline: 1px solid red;

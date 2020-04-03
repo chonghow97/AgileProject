@@ -1,8 +1,31 @@
 <?php 
-include_once 'function.php';
-include_once 'database.php';
+	include_once 'function.php';
+  include_once 'database.php';
 ?>
+<?php
 
+if (!isset($_SESSION['role'])) {
+
+  if (isset($_SESSION['student'])) {
+    
+        header("Location: Student_dashboard.php");
+  }
+
+  if (isset($_SESSION['tutor'])) {
+    
+      header("Location: Lecture_dashboard.php");
+  }
+
+  if (isset($_SESSION['admin'])) {
+    
+      header("Location: Admin_dashboard.php");
+  }
+        
+    
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -13,16 +36,16 @@ include_once 'database.php';
 </style>
 
 <body class="container">
-  <header>
-      <nav class="navbar navbar-light">
-        <span class="navbar-brand mb-0 h1">E-learning</span>
-        <div class="dropdown justify-content-end">
+	<header>
+			<nav class="navbar navbar-light">
+				<span class="navbar-brand mb-0 h1">E-learning</span>
+				<div class="dropdown justify-content-end">
           <?php 
             if(isset($_SESSION['username'])){
               echo "<a class='btn btn-secondary dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Welcome, {$_SESSION['username']}</a>";
-            } else {
-              header("Location:index.php");
-            }
+            } 
+
+
            ?>
   
 
@@ -30,5 +53,5 @@ include_once 'database.php';
     <a class="dropdown-item" href="logout.php">Logout</a>
   </div>
 </div>
-      </nav>
-  </header>
+			</nav>
+	</header>

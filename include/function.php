@@ -30,9 +30,8 @@ function fetch_array($result){
 }
 
 
-/************************LOGIN FUNCTIONS***************************/
+/**********************STUDENT FUNCTIONS*************************/
 
- 
 function login() {
 
 if (isset($_POST['login'])) {
@@ -51,6 +50,7 @@ if (isset($_POST['login'])) {
     $login_firstname = $row['firstName'];
     $login_lastname = $row['lastName'];
     $login_email = $row['email'];
+    $login_role = $row['student'];
     }
 
 if ($email === $login_email && $password === $login_password) {
@@ -59,6 +59,7 @@ if ($email === $login_email && $password === $login_password) {
   $_SESSION['firstName'] = $login_firstname;
   $_SESSION['lastName'] = $login_lastname;
   $_SESSION['email'] = $login_email;
+  $_SESSION['student'] = $login_role;
 
   echo "<script>alert('Welcome, {$_SESSION['username']} to student dashboard.')</script>";
 
@@ -67,8 +68,8 @@ if ($email === $login_email && $password === $login_password) {
 
 } else {
 
-echo "<script>alert('Invalid username or password!')</script>";
-  header("Location: index.php");
+  echo "<script>alert('Invalid username or password!')</script>";
+  //header("Location: index.php");
   
   }
 
@@ -78,6 +79,118 @@ echo "<script>alert('Invalid username or password!')</script>";
 
 }
 
+
+// function list_conversation() {
+
+//   $query = query("SELECT * FROM message");
+//   confirm($query);
+
+//   while ($row = fetch_array($query)) {
+   
+//   $message = $row['message'];
+//   $_SESSION['username'] = $row['username'];
+//   // $_SESSION['student'] = $row['role'];
+//   // $_SESSION['tutor'] = $row['role'];
+
+//   // if($_SESSION['student'] == $row['role'])
+//   // {
+//     echo "<h5>{$_SESSION['username']}</h5>";
+//     echo "<p class='bg-primary p-2 text-white rounded-sm mb-3' >{$message}</p>";
+//   // }
+//   // if($_SESSION['tutor'] == $row['role'])
+//   // {
+//   //   echo "<h5>{$_SESSION['username']}</h5>";
+//   //   echo "<p class='bg-primary p-2 text-white rounded-sm mb-3' >{$message}</p>";
+//   //}
+
+  
+
+//   }
+
+// }
+
+// function chat() {
+
+//   if (isset($_POST['submit'])) {
+
+//   $message = escape_string($_POST['message']);
+//   $date = date('d-m-y');
+//   //$_SESSION['student'] = $row['role'];
+//   // $_SESSION['tutor'] = $row['role'];
+
+//   $query = query("INSERT INTO message(username, message, date) VALUES ('{$_SESSION['username']}', '{$message}', now())");
+//   confirm($query);
+
+//   echo "<h5 style='color:blue;'>{$_SESSION['username']}</h5>";
+//   echo "<p>{$message}</p>";
+// }
+
+// }
+
+
+function  create_appointment(){
+
+if (isset($_POST['create_appointment'])) {
+
+    $title = escape_string($_POST['title']);
+    $date = escape_string($_POST['date']);
+    $time = escape_string($_POST['time']);
+    $meeting_type = escape_string($_POST['meeting_type']);
+    $venue = escape_string($_POST['venue']);
+    $comment = escape_string($_POST['comment']);
+
+    // $date = strtotime($date);
+    // $date = date('d-m-Y', $date);
+
+    if (!empty($title) && !empty($date) && !empty($time) && !empty($meeting_type) && !empty($venue) && !empty($comment)) {
+      
+
+  $query = query("INSERT INTO appointment(username, title, date, time, meeting_type, venue, comment) VALUES ('{$_SESSION['username']}', '{$title}', '{$date}','{$time}','{$meeting_type}','{$venue}','{$comment}')");
+  confirm($query);
+
+  echo "<script>alert('Meeting appointment is created successfully!')</script>";
+
+    } else {
+
+      echo "<script>alert('Fields cannot be empty')</script>";
+
+    }
+    
+  }
+
+}
+
+function create_upload() {
+
+  if (isset($_POST['create_upload'])) {
+
+  $comment = $_POST['comment'];
+  $date = date('d-m-y');
+  $upload = $_FILES['upload']['name'];
+  $upload_temp = $_FILES['upload']['tmp_name'];
+
+  move_uploaded_file($upload_temp, "images/$upload");
+
+    if (!empty($upload) && !empty($date)) {
+
+      $query = query("INSERT INTO uploads(upload, comment, date) VALUES ('{$upload}', '{$comment}', now() )");
+      confirm($query);
+
+      echo "<script>alert('File uploaded successfully!')</script>";
+
+    } else {
+
+      echo "<script>alert('Upload files cannot be empty')</script>";
+
+    }
+
+  
+}
+
+}
+
+
+/**********************ADMIN FUNCTIONS*************************/
 
 function admin_login() {
 
@@ -121,6 +234,69 @@ if ($email === $admin_login_email && $password === $admin_login_password) {
 }
 
 
+function get_tutor(){
+
+  $query = query("SELECT * FROM tutor");
+  confirm($query);
+   
+    while($row = mysqli_fetch_array($query)){
+
+$tutor_links = <<<DELIMETER
+
+<option value="{$row['tutorId']}">{$row['username']}</option>
+
+DELIMETER;
+
+echo $tutor_links;
+
+   }
+}
+
+function get_student(){
+  $query = query("SELECT * FROM student");
+  confirm($query);
+   
+    while($row = mysqli_fetch_array($query)){
+
+$student_links = <<<DELIMETER
+
+<div class="form-check col-lg-4 col-md-6 col-xm-12 checkstudent"> <input class="form-check-input student" type="checkbox" name="checkBoxArray[]" value="{$row["studId"]}" id="{$row["studId"]}"> <label class="form-check-label" for="{$row["studId"]}"> {$row['firstName']}  {$row['lastName']}</label> </div>
+DELIMETER;
+
+echo $student_links;
+
+   }
+
+}
+
+function allocate() {
+
+  if (isset($_POST['allocate'])) {
+    
+  $allocate_tutor = $_POST['tutorOut'];
+  $allocate_student = $_POST['studentOut'];
+
+    if (!empty($allocate_tutor) && !empty($allocate_student)) {
+
+  $query = query("INSERT INTO allocate(allocate_tutor. allocate_student) VALUES ('{$allocate_tutor}','{$allocate_student}')");
+  confirm($query);
+
+  echo "<script>alert('Allocation is successfully!')</script>";
+
+   } else {
+
+  echo "<script>alert('Allocation cannot be empty')</script>";
+
+    }
+
+
+  }
+}
+
+
+/*********************LECTURE FUNCTIONS************************/
+
+
 function lecture_login() {
 
 if (isset($_POST['lecture_login'])) {
@@ -160,105 +336,6 @@ if ($email === $lecture_login_email && $password === $lecture_login_password) {
 
 }
 
-
-}
-
-
-
-/**********************STUDENT FUNCTIONS*************************/
-
-// function get_tutor(){
-
-
-// }
-
-// function get_student(){
-
-
-// }
-
-// function assign_allocation(){
-
-// <<<<<<< HEAD:function.php
-// =======
-// <div class="form-check col-lg-4 col-md-6 col-xm-12"> <input class="form-check-input" type="checkbox" value="{$row["studId"]}" id="{$row["studId"]}"> <label class="form-check-label" for="{$row["studId"]}"> {$row['username']} </label> </div>
-// DELIMETER;
-
-// echo $student_links;
-
-//    }
-// }
-// >>>>>>> a8dc777747a5a3097d87883152b76e7abe780b36:include/function.php
-
-//  if(isset($_POST['submit'])){
-//    $tutor = escape_string($_POST['tutor']);
-//    $student = escape_string($_POST['student']);
-
-// echo "<p class='mt-3 ml-3'>Tutor {$tutor} is assign to student {$student}.</p>";
-
-// }
-        
-//            }
-
-function  create_appointment(){
-
-if (isset($_POST['create_appointment'])) {
-
-    $title = escape_string($_POST['title']);
-    // $tutor = escape_string($_POST['tutor']);
-    // $username = $_SESSION['username'];
-    $time = escape_string($_POST['time']);
-    $type = escape_string($_POST['type']);
-    $venue = escape_string($_POST['venue']);
-    $comment = escape_string($_POST['comment']);
-    $date = escape_string($_POST['date']);
-    // $date = strtotime($date);
-    // $date = date('d-m-Y', $date);
-
-    if (!empty($title) && !empty($date) && !empty($time) && !empty($comment)) {
-      
-
-  $query = query("INSERT INTO appointment(title, date, time, type, venue, comment) VALUES ('{$title}', '{$date}','{$time}','{$type}','{$venue}','{$comment}')");
-  confirm($query);
-
-  echo "<script>alert('Appointment is created successfully!')</script>";
-
-    } else {
-
-      echo "<script>alert('Fields cannot be empty')</script>";
-
-    }
-    
-  }
-
-}
-
-function create_upload() {
-
-  if (isset($_POST['create_upload'])) {
-
-  $comment = $_POST['comment'];
-  $date = date('d-m-y');
-  $upload = $_FILES['upload']['name'];
-  $upload_temp = $_FILES['upload']['tmp_name'];
-
-  move_uploaded_file($upload_temp, "images/$upload");
-
-    if (!empty($upload) && !empty($comment) && !empty($date)) {
-
-      $query = query("INSERT INTO uploads(upload, comment, date) VALUES ('{$upload}', '{$comment}', now() )");
-      confirm($query);
-
-      echo "<script>alert('File uploaded successfully!')</script>";
-
-    } else {
-
-      echo "<script>alert('Upload files cannot be empty')</script>";
-
-    }
-
-  
-}
 
 }
 
