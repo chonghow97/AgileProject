@@ -35,7 +35,7 @@ if (!isset($_SESSION['role'])) {
 </head>
 </style>
 
-<body class="container">
+<body>
 	<header>
 			<nav class="navbar navbar-light">
 				<span class="navbar-brand mb-0 h1">E-learning</span>

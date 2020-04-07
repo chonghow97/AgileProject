@@ -236,7 +236,7 @@ if ($email === $admin_login_email && $password === $admin_login_password) {
 
 function get_tutor(){
 
-  $query = query("SELECT * FROM tutor");
+  $query = query("SELECT * FROM tutor ORDER BY username");
   confirm($query);
    
     while($row = mysqli_fetch_array($query)){
@@ -253,14 +253,14 @@ echo $tutor_links;
 }
 
 function get_student(){
-  $query = query("SELECT * FROM student");
+  $query = query("SELECT * FROM student ORDER BY username");
   confirm($query);
    
     while($row = mysqli_fetch_array($query)){
 
 $student_links = <<<DELIMETER
 
-<div class="form-check col-lg-4 col-md-6 col-xm-12 checkstudent"> <input class="form-check-input student" type="checkbox" name="checkBoxArray[]" value="{$row["studId"]}" id="{$row["studId"]}"> <label class="form-check-label" for="{$row["studId"]}"> {$row['firstName']}  {$row['lastName']}</label> </div>
+<div class="form-check ml-3 mb-3"> <input class="form-check-input student" type="checkbox" name="checkBoxArray[]" value="{$row["studId"]}" id="{$row["studId"]}"> <label class="form-check-label" for="{$row["studId"]}">{$row['firstName']}  {$row['lastName']}</label> </div>
 DELIMETER;
 
 echo $student_links;
@@ -337,6 +337,16 @@ if ($email === $lecture_login_email && $password === $lecture_login_password) {
 }
 
 
+}
+
+if(isset($_POST["allocation"])){
+  $student_id = $_POST["allocation"]["student"];
+  $tutor_id = $_POST["allocation"]["tutor"];
+  echo "Tutor id: $tutor_id";
+  echo "<br>student id :";
+  foreach ($student_id as $key => $value) {
+    echo "$value ,";
+  }
 }
 
 
