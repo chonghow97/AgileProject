@@ -1,4 +1,5 @@
 <?php
+include_once 'database.php';
 
 function query($sql) {
   
@@ -340,14 +341,14 @@ if ($email === $lecture_login_email && $password === $lecture_login_password) {
 }
 
 if(isset($_POST["allocation"])){
-  $student_id = $_POST["allocation"]["student"];
-  $tutor_id = $_POST["allocation"]["tutor"];
-  echo "Tutor id: $tutor_id";
-  echo "<br>student id :";
-  foreach ($student_id as $key => $value) {
-    echo "$value ,";
-  }
+  echo "<script>alert('123')</script>";
+  var_dump($_POST["allocation"]["student"]);
+  //INSERT INTO tbl_name (a,b,c) VALUES(1,2,3),(4,5,6),(7,8,9);
+   $query = query("INSERT INTO allocate (allocate_student) VALUES (4)");
+  confirm($query);
+    echo "INSERT success";
 }
 
 
 ?>
+

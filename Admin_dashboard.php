@@ -67,6 +67,7 @@ include './include/footer.php';
 <script type="text/javascript">
 	$(function () {
 		//apperance
+
 		$("nav:nth(0)").addClass("bg-dark");
 		$("nav:nth(0)>span").addClass("text-white");
 		$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-dark");
@@ -76,7 +77,7 @@ include './include/footer.php';
 		$("#tutor").change(function () {
 			$("#students").show();
 		});
-		$("#tutor,#students").change(function () {
+		function result() {
 			var student = {name:[],id:[]};
 			$(".student:checked").each(function () {
 				student.id.push($(this).val());
@@ -87,21 +88,21 @@ include './include/footer.php';
 			$(".Stu_display").attr("placeholder",names);
 
 			var allocation = {tutor: $("#tutor option:selected").val(),student:student.id};
-
-			console.log(allocation);
-			$("#allocate").click(function () {
+			return allocation;
+		}
+		$("#tutor,#students").change(result)
+		$("#allocate").click(function () {
+			console.log(result());
 					$.ajax({
 						url:"./include/function.php",
 						method: "POST",
-						data: {allocation: allocation},
+						data: {allocation: result()},
 						success: function(data){
 							$('#result').html(data);
 							$(".student:checked").parent().remove();
 						}
 					})
 				})
-		})
-
 	});
 
 	
