@@ -254,7 +254,8 @@ echo $tutor_links;
 }
 
 function get_student(){
-  $query = query("SELECT * FROM student ORDER BY username");
+  //unallocated
+  $query = query("SELECT * FROM student WHERE Tutor = 0 ORDER BY username");
   confirm($query);
    
     while($row = mysqli_fetch_array($query)){
@@ -341,14 +342,13 @@ if ($email === $lecture_login_email && $password === $lecture_login_password) {
 }
 
 if(isset($_POST["allocation"])){
-  echo "<script>alert('123')</script>";
-  var_dump($_POST["allocation"]["student"]);
-  //INSERT INTO tbl_name (a,b,c) VALUES(1,2,3),(4,5,6),(7,8,9);
-   $query = query("INSERT INTO allocate (allocate_student) VALUES (4)");
-  confirm($query);
-    echo "INSERT success";
+  $tId = $_POST["allocation"]["tutor"];
+  $sId = "studId =".implode(" OR studId= ", $_POST["allocation"]["student"]);
+  //reset
+  //$query = query("UPDATE student SET tutor= 0");
+   $query = query("UPDATE student SET tutor= $tId WHERE $sId");
+    confirm($query);
+    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'> <strong>".count($_POST["allocation"]["student"])."</strong> Student has been allocated</strong> <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>";
 }
 
-
-?>
-
+ ?>

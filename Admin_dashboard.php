@@ -7,11 +7,13 @@ $url = ['Admin_dashboard.php','Admin_list.php'];
 $active_index = 0;
 
 ?>
+<div id="result"></div>
 <style type="text/css">
 
 </style>
 
 <div class="row container-fluid mx-auto">
+
 	<div class="list-group col-2">
 		<?php include 'include/sidebar.php'; ?>
 	</div>
@@ -57,7 +59,7 @@ $active_index = 0;
 				</div>
 			</form>
 		</div>
-		<p id="result">123</p>
+		
 	</div>
 </div>
 <?php 
