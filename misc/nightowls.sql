@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2020 at 04:19 AM
+-- Generation Time: Apr 10, 2020 at 04:07 AM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -57,6 +57,14 @@ CREATE TABLE `allocate` (
   `allocate_student` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `allocate`
+--
+
+INSERT INTO `allocate` (`allocateId`, `allocate_tutor`, `allocate_student`) VALUES
+(89, '', '4'),
+(90, '', '4');
+
 -- --------------------------------------------------------
 
 --
@@ -81,7 +89,8 @@ CREATE TABLE `appointment` (
 
 INSERT INTO `appointment` (`appointment_id`, `username`, `title`, `date`, `time`, `meeting_type`, `venue`, `comment`, `status`) VALUES
 (41, 'student', 'Assignment', '2020-04-01', '09:00:00', 'Real', 'Classroom', 'Courserwork', 'Approved'),
-(42, 'James Richard', 'Coursework', '2020-04-02', '11:30:00', 'Virtual', 'None', 'Coursework assignment file', 'Disapproved');
+(42, 'James Richard', 'Coursework', '2020-04-02', '11:30:00', 'Virtual', 'None', 'Coursework assignment file', 'Disapproved'),
+(43, 'James Richard', 'asdasd', '2020-04-08', '01:58:00', 'Virtual', 'Foyer', 'asdasdasd', 'Approved');
 
 -- --------------------------------------------------------
 
@@ -101,8 +110,7 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`message_id`, `username`, `message`, `date`) VALUES
-(23, 'Student', 'Hi Sir', '2020-04-01'),
-(29, 'tutor', 'Hi student', '2020-04-02');
+(31, 'tutor', 'hi all', '2020-04-03');
 
 -- --------------------------------------------------------
 
@@ -117,26 +125,27 @@ CREATE TABLE `student` (
   `firstName` varchar(50) NOT NULL,
   `lastName` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `role` varchar(30) NOT NULL DEFAULT 'student'
+  `role` varchar(30) NOT NULL DEFAULT 'student',
+  `Tutor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`studId`, `username`, `password`, `firstName`, `lastName`, `email`, `role`) VALUES
-(1, 'junecrawford', '*6691484EA6B50DDDE1926A220DA01FA9E575C18A', 'June', 'Crawford', 'junecrawford12@gmail.com', 'student'),
-(2, 'blairhooper', '*FA35C895070370A8E0FAA793FED74F0CFDBF0F30', 'Blair', 'Hooper', 'blairhoope32@gmail.com', 'student'),
-(3, 'ellenrory', '*84F164907546B257C16DDECEF4A812F6B53BB1C0', 'Ellen', 'Rory', 'rory123@gmail.com', 'student'),
-(4, 'berlynnHarris', '*5050491B41CB33B1654946FC9A73980ED3398B58', 'Berlynn', 'Harris', 'berlynnHarris66@gmail.com', 'student'),
-(5, 'wilson', '*F8D8635127425FA4728404E74CE078A4858FB632', 'Wilson', 'Sanders', 'wilsonsanders123@gmail.com', 'student'),
-(6, 'rachellee', '*242CDBDE76385C008FEBAB372DE3836D669ECAFA', 'Rachel', 'Lee', 'rachellee123@gmail.com', 'student'),
-(7, 'allanjohns', '*90A1E02148BBD73DA1D7BD9842DA87BE8A418712', 'Allan', 'Johns', 'allanjohn123@gmail.com', 'student'),
-(8, 'arelyholland', '*2396488DAB1391917F9F4547C7B1D3F5E7B0A3A9', 'Arely', 'Holland', 'arelyholland123@gmail.com', 'student'),
-(9, 'tyronechang', '*11BD51004DEED40B977E5F919D2E6E6C293A961D', 'Tyrone', 'Chang', 'tyronechang123@gmail.com', 'student'),
-(10, 'geraldhansen', '*3E7A3F571C1BFC3E88BB2AC74B0ED3354AA27988', 'Gerald', 'Hansen', 'geraldhansen123@gmail.com', 'student'),
-(11, 'student', 'student123', 'Samuel Matthew', 'Joel', 'student@gmail.com', 'student'),
-(13, 'James Richard', 'jr321', 'James ', 'Richard', 'jamesrichard@gmail.com', 'student');
+INSERT INTO `student` (`studId`, `username`, `password`, `firstName`, `lastName`, `email`, `role`, `Tutor`) VALUES
+(1, 'junecrawford', '*6691484EA6B50DDDE1926A220DA01FA9E575C18A', 'June', 'Crawford', 'junecrawford12@gmail.com', 'student', 0),
+(2, 'blairhooper', '*FA35C895070370A8E0FAA793FED74F0CFDBF0F30', 'Blair', 'Hooper', 'blairhoope32@gmail.com', 'student', 6),
+(3, 'ellenrory', '*84F164907546B257C16DDECEF4A812F6B53BB1C0', 'Ellen', 'Rory', 'rory123@gmail.com', 'student', 0),
+(4, 'berlynnHarris', '*5050491B41CB33B1654946FC9A73980ED3398B58', 'Berlynn', 'Harris', 'berlynnHarris66@gmail.com', 'student', 6),
+(5, 'wilson', '*F8D8635127425FA4728404E74CE078A4858FB632', 'Wilson', 'Sanders', 'wilsonsanders123@gmail.com', 'student', 0),
+(6, 'rachellee', '*242CDBDE76385C008FEBAB372DE3836D669ECAFA', 'Rachel', 'Lee', 'rachellee123@gmail.com', 'student', 0),
+(7, 'allanjohns', '*90A1E02148BBD73DA1D7BD9842DA87BE8A418712', 'Allan', 'Johns', 'allanjohn123@gmail.com', 'student', 6),
+(8, 'arelyholland', '*2396488DAB1391917F9F4547C7B1D3F5E7B0A3A9', 'Arely', 'Holland', 'arelyholland123@gmail.com', 'student', 6),
+(9, 'tyronechang', '*11BD51004DEED40B977E5F919D2E6E6C293A961D', 'Tyrone', 'Chang', 'tyronechang123@gmail.com', 'student', 0),
+(10, 'geraldhansen', '*3E7A3F571C1BFC3E88BB2AC74B0ED3354AA27988', 'Gerald', 'Hansen', 'geraldhansen123@gmail.com', 'student', 0),
+(11, 'student', 'student123', 'Samuel Matthew', 'Joel', 'student@gmail.com', 'student', 0),
+(13, 'James Richard', 'jr321', 'James ', 'Richard', 'jamesrichard@gmail.com', 'student', 0);
 
 -- --------------------------------------------------------
 
@@ -191,7 +200,8 @@ CREATE TABLE `uploads` (
 
 INSERT INTO `uploads` (`upload_id`, `upload`, `comment`, `date`, `status`) VALUES
 (25, 'courseworks.PDF', 'Coursework assignment file', '2020-03-30', 'Disapproved'),
-(28, 'images.png', 'Image of outdoor activity', '2020-04-03', 'Approved');
+(28, 'images.png', 'Image of outdoor activity', '2020-04-03', 'Approved'),
+(29, 'fyp proposal.pdf', '', '2020-04-03', 'pending');
 
 --
 -- Indexes for dumped tables
@@ -253,19 +263,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `allocate`
 --
 ALTER TABLE `allocate`
-  MODIFY `allocateId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `allocateId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `student`
@@ -283,7 +293,7 @@ ALTER TABLE `tutor`
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
