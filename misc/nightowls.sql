@@ -87,7 +87,7 @@ CREATE TABLE `appointment` (
 -- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointment` (`appointment_id`, `username`, `title`, `date`, `time`, `meeting_type`, `venue`, `comment`, `status`) VALUES
+INSERT INTO `appointment` (`appointment_id`, `username`, `title`, `date`, `time`, `type`, `venue`, `comment`, `status`) VALUES
 (41, 'student', 'Assignment', '2020-04-01', '09:00:00', 'Real', 'Classroom', 'Courserwork', 'Approved'),
 (42, 'James Richard', 'Coursework', '2020-04-02', '11:30:00', 'Virtual', 'None', 'Coursework assignment file', 'Disapproved'),
 (43, 'James Richard', 'asdasd', '2020-04-08', '01:58:00', 'Virtual', 'Foyer', 'asdasdasd', 'Approved');
