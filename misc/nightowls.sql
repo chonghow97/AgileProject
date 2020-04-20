@@ -77,7 +77,7 @@ CREATE TABLE `appointment` (
   `title` varchar(50) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL DEFAULT current_timestamp(),
-  `meeting_type` varchar(30) NOT NULL,
+  `type` varchar(30) NOT NULL,
   `venue` varchar(50) NOT NULL,
   `comment` text NOT NULL,
   `status` varchar(50) NOT NULL DEFAULT 'pending'
