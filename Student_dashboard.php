@@ -28,9 +28,9 @@ $active_index = 0;
 			<div class="row">
 				<ul class="list-group mb-3 col-xl-6">
 					<?php 
-						$a = query("SELECT count(appointment_id) FROM appointment WHERE status='Approved'");
-						$d = query("SELECT count(appointment_id) FROM appointment WHERE status='Disapproved'");
-						$p = query("SELECT count(appointment_id) FROM appointment WHERE status='Pending'");
+						$a = query("SELECT count(appointment_id) FROM appointment WHERE status='Approved' AND username= '$name'");
+						$d = query("SELECT count(appointment_id) FROM appointment WHERE status='Disapproved' AND username= '$name'");
+						$p = query("SELECT count(appointment_id) FROM appointment WHERE status='Pending' AND username= '$name'");
     					confirm($a,$d,$p);
     					$status = array_merge(mysqli_fetch_row($a),mysqli_fetch_row($d),mysqli_fetch_row($p));
 					 ?>
