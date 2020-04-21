@@ -1,8 +1,8 @@
 <?php 
 
 $title = "E-learning";
-$name = "Student";
 include 'include/header.php';
+$name = $_SESSION["username"];
 $sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
 $url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
 $active_index = 0;
@@ -58,8 +58,5 @@ $active_index = 0;
 			$(".navbar").addClass("bg-primary");
 			$(".navbar-brand").addClass("text-white");
 			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
-			$.ajax(){
-
-			}
 		})
 	</script>

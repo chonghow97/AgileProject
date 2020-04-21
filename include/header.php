@@ -42,7 +42,7 @@ if (!isset($_SESSION['role'])) {
 				<div class="dropdown justify-content-end">
           <?php 
             if(isset($_SESSION['username'])){
-              echo "<a class='btn btn-secondary dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Welcome, {$_SESSION['username']}</a>";
+              echo "<a class='btn btn-outline-light dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>{$_SESSION['username']}</a>";
             } 
 
 
