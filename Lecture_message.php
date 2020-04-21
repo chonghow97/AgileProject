@@ -93,7 +93,7 @@ if (isset($_POST['submit'])) {
       $(".alert").hide();
       var TutorName = "";
       //APPERENCE
-      $("#nav").addClass("bg-warning");
+      $(".navbar").addClass("bg-warning");
       $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-warning");
 
 

@@ -4,7 +4,7 @@ $name = "Admin";
 include './include/header.php';
 $sidebar = ['Allocation','List of Dahsboards'];
 $url = ['./Admin_dashboard.php','./Admin_list.php'];
-$active_index = 1;
+$active_index = 0;
 ?>
 
 <style type="text/css">
