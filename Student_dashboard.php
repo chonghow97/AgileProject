@@ -31,25 +31,97 @@ $active_index = 0;
 			<div class="p-3 col-lg-6">
 				<h3>Task</h3>
 				<!-- yellow -->
-				<ul class="list-group col">
-				  <li class="list-group-item list-group-item-warning">&nbsp;</li>
-				  <li class="list-group-item"><a href="#">Example</a></li>
-				  <li class="list-group-item"><a href="#">Example</a></li>
-				  <li class="list-group-item"><a href="#">Example</a></li>
+	<?php
 
+    $query = query("SELECT * FROM appointment WHERE status LIKE '%pending%' ORDER BY appointment_id DESC");
+    confirm($query);
+
+    while ($row = fetch_array($query)) {
+    
+    $appointment_id = $row['appointment_id'];  
+    $username = $row['username'];
+    $title = $row['title'];
+	$type = $row['type'];
+    $venue = $row['venue'];
+    $time = $row['time'];
+    $comment = $row['comment'];
+    $status = $row['status'];
+    $date = $row['date'];
+    $date = strtotime($date);
+    $date = date('d M Y', $date);
+
+?>  
+
+				<ul class="list-group col">
+				  <li class="list-group-item list-group-item-warning">Pending</li>
+				  <?php	for ($i=0; $i < 1; $i++) { 
+				  		echo "<li class='list-group-item'>$title</li>";
+				  	} ?>
 				</ul>
-				<ul class="list-group mt-3 col">
-				  <li class="list-group-item list-group-item-danger">&nbsp;</li>
-				  <li class="list-group-item"><a href="#">Example</a></li>
-				  <li class="list-group-item"><a href="#">Example</a></li>
-				  <li class="list-group-item"><a href="#">Example</a></li>
+<?php } ?>	
+
+<hr>
+
+<?php
+
+    $query = query("SELECT * FROM appointment WHERE status LIKE '%Disapproved%' ORDER BY appointment_id DESC");
+    confirm($query);
+
+    while ($row = fetch_array($query)) {
+    
+    $appointment_id = $row['appointment_id'];  
+    $username = $row['username'];
+    $title = $row['title'];
+	$type = $row['type'];
+    $venue = $row['venue'];
+    $time = $row['time'];
+    $comment = $row['comment'];
+    $status = $row['status'];
+    $date = $row['date'];
+    $date = strtotime($date);
+    $date = date('d M Y', $date);
+
+?>  
+
+				<ul class="list-group col">
+				  <li class="list-group-item list-group-item-danger">Disapproved</li>
+				  <?php	for ($i=0; $i < 1; $i++) { 
+				  		echo "<li class='list-group-item'>$title</li>";
+				  	} ?>
 				</ul>
-				<ul class="list-group mt-3 col">
-				  <li class="list-group-item list-group-item-success">&nbsp;</li>
-				  <li class="list-group-item"><a href="#">Example</a></li>
-				  <li class="list-group-item"><a href="#">Example</a></li>
-				  <li class="list-group-item"><a href="#">Example</a></li>
+<?php } ?>
+
+<hr>
+
+<?php
+
+    $query = query("SELECT * FROM appointment WHERE status LIKE '%Approved%' ORDER BY appointment_id DESC");
+    confirm($query);
+
+    while ($row = fetch_array($query)) {
+    
+    $appointment_id = $row['appointment_id'];  
+    $username = $row['username'];
+    $title = $row['title'];
+	$type = $row['type'];
+    $venue = $row['venue'];
+    $time = $row['time'];
+    $comment = $row['comment'];
+    $status = $row['status'];
+    $date = $row['date'];
+    $date = strtotime($date);
+    $date = date('d M Y', $date);
+
+?>  
+
+				<ul class="list-group col">
+				  <li class="list-group-item list-group-item-success">Approved</li>
+				  <?php	for ($i=0; $i < 1; $i++) { 
+				  		echo "<li class='list-group-item'>$title</li>";
+				  	} ?>
 				</ul>
+<?php } ?>
+
 			</div>
 
 			<!-- blog -->
@@ -77,10 +149,3 @@ $active_index = 0;
 			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
 		})
 	</script>
-
-
-
-
-
-
-
