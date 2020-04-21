@@ -29,8 +29,30 @@ $active_index = 2;
       <!-- Meeting -->
       <h3>Meeting</h3>
       <hr>
+      <div class="row">
+      <div class="col overflow-auto" style="height: 80vh">
+        <ul class="list-group mb-3">
+          <li class="list-group-item list-group-item-warning pending">Pending</li>
+          <li class="list-group-item">123</li>
+          <li class="list-group-item">123</li>
+          <li class="list-group-item">123</li>
+          <li class="list-group-item">123</li>
+        </ul>
+        <ul class="list-group mb-3">
+          <li class="list-group-item list-group-item-success approved">Approved</li>
+          <li class="list-group-item">123</li>
+          <li class="list-group-item">123</li>
+          <li class="list-group-item">123</li>
+        </ul>
+        <ul class="list-group mb-3">
+          <li class="list-group-item list-group-item-danger declined">Declined</li>
+          <li class="list-group-item">123</li>
+          <li class="list-group-item">123</li>
+          <li class="list-group-item">123</li>
+        </ul>
+      </div>
       
-      <form class="" action="" method="post" enctype="">
+      <form class="col" action="" method="post" enctype="">
 
         <div class="form-group">
           <label for="title">Title</label>
@@ -93,6 +115,7 @@ $active_index = 2;
         
         <button type="submit" name="create_appointment" class="btn btn-outline-primary form-group" value="Appointment">Send</button>
       </form>
+      </div>
     </div>
   </div>
 </div>
@@ -101,6 +124,8 @@ include './include/footer.php';
 ?>
 <script type="text/javascript">
   $(function () {
+    $(".navbar").addClass("bg-primary");
+    $(".navbar-brand").addClass("text-white");
     $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
   })
 </script>
