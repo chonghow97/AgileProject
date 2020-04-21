@@ -27,8 +27,7 @@ $active_index = 2;
     <div class="container mx-auto">
       <?php create_appointment(); ?>
       <!-- Meeting -->
-      <h3>Meeting</h3>
-      <hr>
+      
       <div class="row">
       <div class="col overflow-auto" style="height: 80vh">
         <ul class="list-group mb-3">
@@ -53,7 +52,8 @@ $active_index = 2;
       </div>
       
       <form class="col" action="" method="post" enctype="">
-
+        <h3>Meeting</h3>
+      <hr>
         <div class="form-group">
           <label for="title">Title</label>
           <input type="text" name="title" class="form-control border-primary" placeholder="Ex: Meetings...">

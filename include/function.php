@@ -136,17 +136,17 @@ if (isset($_POST['create_appointment'])) {
     $title = escape_string($_POST['title']);
     $date = escape_string($_POST['date']);
     $time = escape_string($_POST['time']);
-    $meeting_type = escape_string($_POST['meeting_type']);
+    $type = escape_string($_POST['type']);
     $venue = escape_string($_POST['venue']);
     $comment = escape_string($_POST['comment']);
 
     // $date = strtotime($date);
     // $date = date('d-m-Y', $date);
 
-    if (!empty($title) && !empty($date) && !empty($time) && !empty($meeting_type) && !empty($venue) && !empty($comment)) {
+    if (!empty($title) && !empty($date) && !empty($time) && !empty($type) && !empty($venue) && !empty($comment)) {
       
 
-  $query = query("INSERT INTO appointment(username, title, date, time, meeting_type, venue, comment) VALUES ('{$_SESSION['username']}', '{$title}', '{$date}','{$time}','{$meeting_type}','{$venue}','{$comment}')");
+  $query = query("INSERT INTO appointment(username, title, date, time, type, venue, comment) VALUES ('{$_SESSION['username']}', '{$title}', '{$date}','{$time}','{$type}','{$venue}','{$comment}')");
   confirm($query);
 
   echo "<script>alert('Meeting appointment is created successfully!')</script>";

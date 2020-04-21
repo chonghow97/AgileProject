@@ -37,7 +37,7 @@ $active_index = 0;
     $appointment_id = $row['appointment_id'];  
     $username = $row['username'];
     $title = $row['title'];
-	$meeting_type = $row['meeting_type'];
+	$type = $row['type'];
     $venue = $row['venue'];
     $time = $row['time'];
     $comment = $row['comment'];
@@ -64,7 +64,7 @@ $active_index = 0;
 							<div class="d-flex justify-content-between">
 								<span><?php echo $date ?></span>
 								<span><?php echo $time ?></span>
-								<span><?php echo $meeting_type ?></span>
+								<span><?php echo $type ?></span>
 								<span><?php echo $venue ?></span>
 							</div>
 						</div>					
@@ -114,5 +114,4 @@ $active_index = 0;
 		});
 
 	</script>
-
 
