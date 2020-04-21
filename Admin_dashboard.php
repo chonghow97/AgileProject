@@ -1,28 +1,27 @@
 <?php 
-
 $title = "E-learning";
+$name = "Admin";
 include './include/header.php';
-$sidebar = ['Allocation','List'];
-$url = ['Admin_dashboard.php','Admin_list.php'];
-$active_index = 0;
-
+$sidebar = ['Allocation','List of Dahsboards'];
+$url = ['./Admin_dashboard.php','./Admin_list.php'];
+$active_index = 1;
 ?>
-<div id="result"></div>
+
 <style type="text/css">
-
+	*{
+		/*outline: 1px solid red;*/
+	}
 </style>
-
 <div class="row container-fluid mx-auto">
 
 	<div class="list-group col-2">
 		<?php include 'include/sidebar.php'; ?>
 	</div>
-	<div class="col-10 p-3">
+	<div class="col-9">
 		<div class="container">
 			<p class="test"></p>
 			<h3>Allocation</h3>
-			<hr>
-			<form class="container">
+			
 				<div class="row">
 					<div class="col-xl-6">
 						<div class="form-group">
@@ -53,6 +52,8 @@ $active_index = 0;
 						</div>
 						<div class="col-1">
 							<button type="button" class="btn btn-outline-dark" id="allocate">Submit</button>
+						
+						 
 						</div>
 					</div>
 					
