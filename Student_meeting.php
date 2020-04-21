@@ -51,7 +51,7 @@ $active_index = 2;
         <div class="row">
           <div class="form-group col">
             <label for="type">Type of Meeting</label>
-            <select typr="type" name="meeting_type" class="form-control border border-primary">
+            <select name="type" class="form-control border border-primary">
               <option value="type">Select Options</option>
               <option>Virtual</option>
               <option>Real</option>
@@ -63,9 +63,9 @@ $active_index = 2;
 
 // while ($row = mysqli_fetch_assoc($query)) {
 //         $meetingData_Id = $row['meetingData_Id'];
-//         $meeting_type = $row['meeting_type'];
+//         $type = $row['type'];
 
-//         echo "<option value='{$meetingData_Id}'>{$meeting_type}</option>";
+//         echo "<option value='{$meetingData_Id}'>{type}</option>";
 
 // }
 
