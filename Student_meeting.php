@@ -32,22 +32,51 @@ $active_index = 2;
       <div class="col overflow-auto" style="height: 80vh">
         <ul class="list-group mb-3">
           <li class="list-group-item list-group-item-warning pending">Pending</li>
-          <li class="list-group-item">123</li>
-          <li class="list-group-item">123</li>
-          <li class="list-group-item">123</li>
-          <li class="list-group-item">123</li>
+          <?php 
+              $query= query("SELECT `date`,`time`,`username`,`title`,`type`,`venue`,`comment` FROM appointment WHERE status='Pending'");
+            confirm($query);
+            while ($row = fetch_array($query)){
+              echo "<li class='list-group-item'>
+              <table class='col-12'>
+             <tr><td>$row[0]</td><td rowspan='2'>$row[3]</td><td>$row[4]</td><td rowspan='2'>$row[6]</td></tr>
+             <tr><td>$row[1]</td><td>$row[5]</td></tr>
+           </table>
+              </li>";
+            }
+
+           ?>
         </ul>
         <ul class="list-group mb-3">
           <li class="list-group-item list-group-item-success approved">Approved</li>
-          <li class="list-group-item">123</li>
-          <li class="list-group-item">123</li>
-          <li class="list-group-item">123</li>
+          <?php 
+              $query= query("SELECT `date`,`time`,`username`,`title`,`type`,`venue`,`comment` FROM appointment WHERE status='approved'");
+            confirm($query);
+            while ($row = fetch_array($query)){
+              echo "<li class='list-group-item'>
+              <table class='col-12'>
+             <tr><td>$row[0]</td><td rowspan='2'>$row[3]</td><td>$row[4]</td><td rowspan='2'>$row[6]</td></tr>
+             <tr><td>$row[1]</td><td>$row[5]</td></tr>
+           </table>
+              </li>";
+            }
+
+           ?>
         </ul>
         <ul class="list-group mb-3">
           <li class="list-group-item list-group-item-danger declined">Declined</li>
-          <li class="list-group-item">123</li>
-          <li class="list-group-item">123</li>
-          <li class="list-group-item">123</li>
+          <?php 
+              $query= query("SELECT `date`,`time`,`username`,`title`,`type`,`venue`,`comment` FROM appointment WHERE status='disapproved'");
+            confirm($query);
+            while ($row = fetch_array($query)){
+              echo "<li class='list-group-item'>
+              <table class='col-12'>
+             <tr><td>$row[0]</td><td rowspan='2'>$row[3]</td><td>$row[4]</td><td rowspan='2'>$row[6]</td></tr>
+             <tr><td>$row[1]</td><td>$row[5]</td></tr>
+           </table>
+              </li>";
+            }
+
+           ?>
         </ul>
       </div>
       
