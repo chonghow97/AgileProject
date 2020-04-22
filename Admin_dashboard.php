@@ -7,11 +7,14 @@ $url = ['./Admin_dashboard.php','./Admin_list.php'];
 $active_index = 0;
 ?>
 
+
+
 <style type="text/css">
 	*{
 		/*outline: 1px solid red;*/
 	}
 </style>
+<body>
 <div class="row container-fluid mx-auto">
 
 	<div class="list-group col-2">
@@ -50,20 +53,25 @@ $active_index = 0;
 						<div class="col-11">
 							<input class="form-control Stu_display" type="text" placeholder="Student Name" readonly>
 						</div>
-						<div class="col-1">
-							<button type="button" class="btn btn-outline-dark" id="allocate">Submit</button>
 						
-						 
-						</div>
+						<form action="emailtest.php" method="post"> 
+						       	<button type="submit" name = "submit" class="btn btn-outline-dark" value="submit" id="allocate">Submit</button>
+						      
+								</form> 
+
+
 					</div>
 					
 				</div>
-			</form>
+			
 		</div>
 		
 	</div>
 </div>
+</body>
+
 <?php 
+								 
 include './include/footer.php';
 ?>
 
@@ -110,4 +118,3 @@ include './include/footer.php';
 
 	
 </script>
-
