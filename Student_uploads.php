@@ -1,113 +1,150 @@
 <?php 
 $title = "E-learning";
-$name = "Student";
+$name = "Student"; 
 include 'include/header.php';
-$sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
-$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
+$sidebar = ['Dashboard','Message','Meeting','Blog','Assignment','Tutees Dashboard'];
+$url = ['lecture_dashboard.php','lecture_message.php','lecture_meeting.php','lecture_blog.php','lecture_uploads.php','lecture_tuteeList.php'];
 $active_index = 4;
 ?>
+
 <style type="text/css">
+	*{
+		/*outline: 1px solid red;*/
+	}
+	#studentOut{
+		resize: none;
+	}
 </style>
 <div class="container-fluid row">
-  <div class="list-group col-3">
+	<div class="list-group col-3">
 
-    <?php 
-    include 'include/sidebar.php'; 
-    //include 'include/lecture-details.php';
-    ?>
-    
-
-  </div>
+		<?php include 'include/sidebar.php'; ?>
 
 
-  <div class="col-9 p-3 row">
+	</div>
+			<div class="col-9 row p-3">
+				<div class="col-lg-9">
+					<h3 class="p-3">Assignment Approvement</h3>
 
-    <div class="container p-3">
-      <h3>Upload Assignment</h3>
-    <hr>
-<?php create_upload(); ?>
-        <form action="" method="post" enctype="multipart/form-data">
-      <div class="form-group border p-3">
-        <label for="upload">Please Upload your file</label>
-        <input type="file" name="upload" class="form-control-file">
-      </div>
-      <div class="form-group mx-sm-3 mb-2">
-          <input type="text" name="comment" class="form-control border-primary" placeholder="Comment here.." style="width: 52vw; height: 10vw;">
-      </div>
-        <div class="form-group">
-        <button type="submit" name="create_upload" onclick="check_upload()" class="btn btn-outline-primary mb-2">Upload</button>
-      </div>
-    </form>
 
-    <hr>
-    <table class="table col-10 mx-auto">
+    <table class="table col-10 mx-auto table-bordered table-hover">
       <thead>
-        <tr>
+        <tr class="warning p-3">
+          <th scope="col">Id</th>
           <th scope="col">Name</th>
           <th scope="col">Comment</th>
           <th scope="col">Upload date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Approve</th>
+          <th scope="col">Disapprove</th>
+          <th scope="col">Download</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
-        <?php 
+<?php 
 
-        $query = query("SELECT * FROM uploads ORDER BY upload_id DESC");
-        confirm($query);
-   
-          while($row = mysqli_fetch_assoc($query)){
-            $upload_id = $row['upload_id'];
-            $upload = $row['upload'];
-            $comment = $row['comment'];
-            $date = $row['date'];
-            $date = strtotime($date);
-            $date = date('d M Y', $date);
+$query = query("SELECT * FROM uploads ORDER BY upload_id DESC");
+confirm($query);
 
-            echo "<tr>";
-            echo "<th>$upload</th>";
-            echo "<th>$comment</th>";
-            echo "<th>$date</th>";
-            echo "<td><a href='student_uploads.php?download={$upload_id}' class='btn btn-outline-success btn-sm'>Download</a></td>";
-            echo "<td><a href='student_uploads.php?delete={$upload_id}' class='btn btn-outline-danger btn-sm' onclick='check_delete()'>Delete</a></td>";
-            echo "</tr>";
+  while($row = mysqli_fetch_assoc($query)){
+    $upload_id = $row['upload_id'];
+    $upload = $row['upload'];
+    $comment = $row['comment'];
+    $date = $row['date'];
+    $date = strtotime($date);
+    $date = date('d M Y', $date);
+    $status = $row['status'];
 
-         }
-        ?>
+    echo "<tr>";
+    echo "<th>$upload_id</th>";
+    echo "<th>$upload</th>";
+    echo "<th>$comment</th>";
+    echo "<th>$date</th>";
+    echo "<th>$status</th>";
+    echo "<td><a href='lecture_uploads.php?approve={$upload_id}' class='btn btn-outline-success btn-sm' onclick='check_approve()'>Approve</a></td>";
+    echo "<td><a href='lecture_uploads.php?disapprove={$upload_id}' class='btn btn-outline-warning btn-sm' onclick='check_disapprove()'>Disapprove</a></td>";
+    echo "<td><a href='lecture_uploads.php?download={$upload_id}' class='btn btn-outline-primary btn-sm'>Download</a></td>";
+    echo "<td><a href='lecture_uploads.php?delete={$upload_id}' class='btn btn-outline-danger btn-sm' onclick='check_delete()'>Delete</a></td>";
+    echo "</tr>";
+
+}
+
+?>
       </tbody>
     </table>
 
-        </div>
-  </div>
 <?php 
 
-if(isset($_GET['delete'])) {
+if(isset($_GET['approve'])) {
 
-$delete_upload_id = $_GET['delete'];
-
-$query = "DELETE FROM uploads WHERE upload_id = {$delete_upload_id} ";
-$delete_query = mysqli_query($connection, $query);
-header("Location: Student_uploads.php");
+    $approve_upload_id = $_GET['approve'];
+    
+    $query = "UPDATE uploads SET status = 'Approved' WHERE upload_id = $approve_upload_id";    
+    $approve_query = mysqli_query($connection, $query);
+    header("Location: lecture_uploads.php");
 }
 
 
-?>
+if(isset($_GET['disapprove'])) {
+
+    $disapprove_upload_id = $_GET['disapprove'];
+    
+    $query = "UPDATE uploads SET status = 'Disapproved' WHERE upload_id = $disapprove_upload_id";    
+    $disapprove_query = mysqli_query($connection, $query);
+    header("Location: lecture_uploads.php");
+}
+
+
+if(isset($_GET['delete'])) {
+
+    $delete_upload_id = $_GET['delete'];
+    
+    $query = "DELETE FROM uploads WHERE upload_id = {$delete_upload_id} ";
+    $delete_query = mysqli_query($connection, $query);
+    header("Location: lecture_uploads.php");
+}
+
+
+ ?>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<?php 
+	include './include/footer.php';
+	?>
+
+	<script type="text/javascript">
+		$(function () {
+			$(".alert").hide();
+			var TutorName = "";
+			//APPERENCE
+			$(".navbar").addClass("bg-warning");
+			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-warning");
+
+
+		});
+
+	</script>
+
 <script type="text/javascript">
-   
-  function check_delete() {
+	
+function check_delete() {
     alert("Delete confirmed!");
   }
 
- </script>
-</div>
-<?php 
-include './include/footer.php';
-?>
-<script type="text/javascript">
-  $(function () {
-    $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
-  })
+
+function check_approve() {
+    alert("Upload status approve confirmed!");
+  }
+
+
+function check_disapprove() {
+    alert("Upload status disapprove confirmed!");
+  }
+
 </script>
-
-
-
-
 
