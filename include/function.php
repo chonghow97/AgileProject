@@ -164,7 +164,7 @@ if (isset($_POST['create_appointment'])) {
 function create_upload() {
 
   if (isset($_POST['create_upload'])) {
-
+  $topic = $_POST['topic'];
   $comment = $_POST['comment'];
   $date = date('d-m-y');
   $upload = $_FILES['upload']['name'];
@@ -174,10 +174,10 @@ function create_upload() {
 
     if (!empty($upload) && !empty($date)) {
 
-      $query = query("INSERT INTO uploads(upload, comment, date) VALUES ('{$upload}', '{$comment}', now() )");
+      $query = query("INSERT INTO uploads(upload, comment, date,topic) VALUES ('{$upload}', '{$comment}', now(),'{$topic}' )");
       confirm($query);
 
-      echo "<script>alert('File uploaded successfully!')</script>";
+      echo "<script>alert('Topic has been created')</script>";
 
     } else {
 
