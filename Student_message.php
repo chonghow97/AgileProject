@@ -1,37 +1,38 @@
 <?php 
 $title = "E-learning";
-$name = "Student";
-include 'include/header.php';
-$sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
-$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
+$name = "lecture";
+include './include/header.php';
+$sidebar = ['Dashboard','Message','Meeting','Blog','Assignment','Tutees Dashboard'];
+$url = ['lecture_dashboard.php','lecture_message.php','lecture_meeting.php','lecture_blog.php','lecture_uploads.php','lecture_tuteeList.php'];
 $active_index = 1;
 ?>
 <style type="text/css">
-  #chat{
-    bottom: 33px;
+  *{
+    /*outline: 1px solid red;*/
+  }
+  #studentOut{
+    resize: none;
+  }
+  #text{
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 </style>
 <div class="container-fluid row">
   <div class="list-group col-3">
 
-    <?php 
-    include 'include/sidebar.php'; 
-    //include 'include/lecture-details.php';
-    ?>
-    
+    <?php include 'include/sidebar.php'; ?>
+
 
   </div>
-
-
   <div class="col-9 row p-3">
     <div class="container border border-primary">
       <!-- conversation -->
       <div class="flex-column mb-3 p-3" style="height: 78vh">
-
 <?php
 
-
-    $query = query("SELECT * FROM message ");
+    $query = query("SELECT * FROM message");
     confirm($query);
 
     while ($row = fetch_array($query)) {
@@ -46,9 +47,10 @@ $active_index = 1;
     echo "<small class='float-right font-weight-bold text-uppercase'>$date</small>";
     echo "<p>{$message}</p>";
     echo "<hr>";
+
     }
 
-?>       
+?>        
       </div>
       <!-- chat -->
 <?php
@@ -59,7 +61,7 @@ if (isset($_POST['submit'])) {
   $message = escape_string($_POST['message']);
   $date = date('d-m-y');
 
-  $query = query("INSERT INTO message(username, message, date) VALUES ('{$_SESSION['username']}',  '{$message}', now())");
+  $query = query("INSERT INTO message(username, message, date) VALUES ('{$_SESSION['username']}', '{$message}', now())");
   confirm($query);
 
   echo "<h5 style='color:blue;'>{$_SESSION['username']}</h5>";
@@ -70,8 +72,8 @@ if (isset($_POST['submit'])) {
 ?>
 
       <form class="form-inline mt-3" method="post">
-        <div class="form-group mx-sm-3 mb-2">
-<!--           <input type="text" name="username" class="form-control border-primary" id="inputPassword2" placeholder="Username" style="width: 50vw">
+<!--         <div class="form-group mx-sm-3 mb-2">
+          <input type="text" name="username" class="form-control border-primary" id="inputPassword2" placeholder="Username" style="width: 50vw">
         </div> -->
         <div class="form-group mx-sm-3 mb-2">
           <input type="text" name="message" class="form-control border-primary" id="inputPassword2" placeholder="Chat here..." style="width: 50vw">
@@ -81,15 +83,23 @@ if (isset($_POST['submit'])) {
     </div>
   </div>
 </div>
-<?php 
-include './include/footer.php';
-?>
-<script type="text/javascript">
-  $(function () {
-    $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
-  })
-</script>
 
+  <?php 
+  include './include/footer.php';
+  ?>
+
+  <script type="text/javascript">
+    $(function () {
+      $(".alert").hide();
+      var TutorName = "";
+      //APPERENCE
+      $(".navbar").addClass("bg-warning");
+      $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-warning");
+
+
+    });
+
+  </script>
   
   
 
