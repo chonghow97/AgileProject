@@ -2,8 +2,8 @@
 $title = "E-learning";
 $name = "Student"; 
 include 'include/header.php';
-$sidebar = ['Dashboard','Message','Meeting','Blog','Assignment'];
-$url = ['lecture_dashboard.php','lecture_message.php','lecture_meeting.php','lecture_blog.php','lecture_uploads.php'];
+$sidebar = ['Dashboard','Message','Meeting','Blog','Assignment','Tutees Dashboard'];
+$url = ['lecture_dashboard.php','lecture_message.php','lecture_meeting.php','lecture_blog.php','lecture_uploads.php','lecture_tuteeList.php'];
 $active_index = 4;
 ?>
 
@@ -138,7 +138,7 @@ if(isset($_GET['delete'])) {
 			$(".alert").hide();
 			var TutorName = "";
 			//APPERENCE
-			$("#nav").addClass("bg-warning");
+			$(".navbar").addClass("bg-warning");
 			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-warning");
 
 
