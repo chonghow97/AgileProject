@@ -2,9 +2,9 @@
 $title = "E-learning";
 $name = "Student"; 
 include 'include/header.php';
-$sidebar = ['Dashboard','Message','Meeting','Blog','Assignment','Tutees Dashboard'];
-$url = ['lecture_dashboard.php','lecture_message.php','lecture_meeting.php','lecture_blog.php','lecture_uploads.php','lecture_tuteeList.php'];
-$active_index = 2;
+$sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
+$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
+$active_index = 4;
 ?>
 
 <style type="text/css">
@@ -128,8 +128,9 @@ if(isset($_GET['disapprove'])) {
 			$(".alert").hide();
 			var TutorName = "";
 			//APPERENCE
-			$(".navbar").addClass("bg-warning");
-			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-warning");
+			$(".navbar").addClass("bg-primary");
+            $(".navbar-brand").addClass("text-white");
+			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
             function check_approve() {
             alert("Meeting status approve confirmed!");
         }

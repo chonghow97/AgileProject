@@ -2,8 +2,8 @@
 $title = "E-learning";
 $name = "lecture";
 include './include/header.php';
-$sidebar = ['Dashboard','Message','Meeting','Blog','Assignment','Tutees Dashboard'];
-$url = ['lecture_dashboard.php','lecture_message.php','lecture_meeting.php','lecture_blog.php','lecture_uploads.php','lecture_tuteeList.php'];
+$sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
+$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
 $active_index = 1;
 ?>
 <style type="text/css">
@@ -93,7 +93,8 @@ if (isset($_POST['submit'])) {
       $(".alert").hide();
       var TutorName = "";
       //APPERENCE
-      $(".navbar").addClass("bg-warning");
+      $(".navbar").addClass("bg-primary");
+      $(".navbar-brand").addClass("text-white");
       $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-warning");
 
 
