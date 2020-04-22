@@ -4,7 +4,7 @@ $name = "Student";
 include 'include/header.php';
 $sidebar = ['Dashboard','Message','Meeting','Blog','Assignment','Tutees Dashboard'];
 $url = ['lecture_dashboard.php','lecture_message.php','lecture_meeting.php','lecture_blog.php','lecture_uploads.php','lecture_tuteeList.php'];
-$active_index = 4;
+$active_index = 2;
 ?>
 
 <style type="text/css">
@@ -14,6 +14,9 @@ $active_index = 4;
 	#studentOut{
 		resize: none;
 	}
+    td{
+        color: #3d3d3d;
+    }
 </style>
 <div class="container-fluid row">
 	<div class="list-group col-3">
@@ -21,92 +24,95 @@ $active_index = 4;
 		<?php include 'include/sidebar.php'; ?>
 
 
-	</div>
-			<div class="col-9 row p-3">
+	</div>  
+			<div class="col-9 row p-3 mx-auto">
 				<div class="col-lg-9">
-					<h3 class="p-3">Assignment Approvement</h3>
-
-
-    <table class="table col-10 mx-auto table-bordered table-hover">
-      <thead>
-        <tr class="warning p-3">
-          <th scope="col">Id</th>
-          <th scope="col">Name</th>
-          <th scope="col">Comment</th>
-          <th scope="col">Upload date</th>
-          <th scope="col">Status</th>
-          <th scope="col">Approve</th>
-          <th scope="col">Disapprove</th>
-          <th scope="col">Download</th>
-          <th scope="col">Delete</th>
+					<h3 class="p-3">Meeting Approvement</h3>
+<div class="overflow-auto mx-auto">
+<table class="table table-bordered table-hover overflow-auto">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Title</th>
+            <th>Comment</th>
+            <th>Venue</th>
+            <th>Action</th>
         </tr>
-      </thead>
-      <tbody>
+    </thead>
+    <tbody>
 <?php 
 
-$query = query("SELECT * FROM uploads ORDER BY upload_id DESC");
+$query = query("SELECT * FROM appointment ORDER BY appointment_id DESC");
 confirm($query);
 
-  while($row = mysqli_fetch_assoc($query)){
-    $upload_id = $row['upload_id'];
-    $upload = $row['upload'];
+    while ($row = fetch_array($query)) {
+    
+    $appointment_id = $row['appointment_id'];  
+    $username = $row['username'];
+    $title = $row['title'];
     $comment = $row['comment'];
+	$type = $row['type'];
+    $venue = $row['venue'];
+    $time = $row['time'];
     $date = $row['date'];
     $date = strtotime($date);
     $date = date('d M Y', $date);
     $status = $row['status'];
 
-    echo "<tr>";
-    echo "<th>$upload_id</th>";
-    echo "<th>$upload</th>";
-    echo "<th>$comment</th>";
-    echo "<th>$date</th>";
-    echo "<th>$status</th>";
-    echo "<td><a href='lecture_uploads.php?approve={$upload_id}' class='btn btn-outline-success btn-sm' onclick='check_approve()'>Approve</a></td>";
-    echo "<td><a href='lecture_uploads.php?disapprove={$upload_id}' class='btn btn-outline-warning btn-sm' onclick='check_disapprove()'>Disapprove</a></td>";
-    echo "<td><a href='lecture_uploads.php?download={$upload_id}' class='btn btn-outline-primary btn-sm'>Download</a></td>";
-    echo "<td><a href='lecture_uploads.php?delete={$upload_id}' class='btn btn-outline-danger btn-sm' onclick='check_delete()'>Delete</a></td>";
-    echo "</tr>";
+if($status == 'Approved'){
+    echo '<tr style="background-color:#03fcc2">';
+}elseif($status == 'Disapproved'){
+    echo '<tr style="background-color:#de5d93">';
+}
+else{
+    echo '<tr>';
+}
+echo "<td>$appointment_id</td>";
+echo "<td><b>$username<b></td>";
+echo "<td>$title</td>";
+echo "<td>$comment</td>";
+echo "<td><b>$venue ($type)</b><br> $time <br> $date</td>";
+echo "<td style='width: 110px'><div class='row mx-auto'><a href='lecture_meeting.php?approve=$appointment_id' class='btn btn-outline-dark btn-sm' onclick='check_approve()'>✔️</a>
+<a href='lecture_meeting.php?disapprove=$appointment_id' class='btn btn-outline-dark btn-sm ml-1' onclick='check_disapprove()'>❌</a></div></td>";
+echo "</tr>";
 
 }
 
-?>
-      </tbody>
-    </table>
 
+?>
+
+    </tbody>
+
+</table>
+</div>
 <?php 
 
 if(isset($_GET['approve'])) {
 
-    $approve_upload_id = $_GET['approve'];
+    $approve_appointment_id = $_GET['approve'];
     
-    $query = "UPDATE uploads SET status = 'Approved' WHERE upload_id = $approve_upload_id";    
+    $query = "UPDATE appointment SET status = 'Approved' WHERE appointment_id = $approve_appointment_id";    
     $approve_query = mysqli_query($connection, $query);
-    header("Location: lecture_uploads.php");
+    header("Location: lecture_meeting.php");
 }
 
 
 if(isset($_GET['disapprove'])) {
 
-    $disapprove_upload_id = $_GET['disapprove'];
+    $disapprove_appointment_id = $_GET['disapprove'];
     
-    $query = "UPDATE uploads SET status = 'Disapproved' WHERE upload_id = $disapprove_upload_id";    
+    $query = "UPDATE appointment SET status = 'Disapproved' WHERE appointment_id = $disapprove_appointment_id";    
     $disapprove_query = mysqli_query($connection, $query);
-    header("Location: lecture_uploads.php");
+    header("Location: lecture_meeting.php");
 }
 
 
-if(isset($_GET['delete'])) {
 
-    $delete_upload_id = $_GET['delete'];
-    
-    $query = "DELETE FROM uploads WHERE upload_id = {$delete_upload_id} ";
-    $delete_query = mysqli_query($connection, $query);
-    header("Location: lecture_uploads.php");
-}
 
 
  ?>
+
 
 				</div>
 			</div>
@@ -124,27 +130,17 @@ if(isset($_GET['delete'])) {
 			//APPERENCE
 			$(".navbar").addClass("bg-warning");
 			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-warning");
+            function check_approve() {
+            alert("Meeting status approve confirmed!");
+        }
 
 
-		});
+        function check_disapprove() {
+            alert("Meeting status disapprove confirmed!");
+        }
+        });
 
-	</script>
-
-<script type="text/javascript">
 	
-function check_delete() {
-    alert("Delete confirmed!");
-  }
-
-
-function check_approve() {
-    alert("Upload status approve confirmed!");
-  }
-
-
-function check_disapprove() {
-    alert("Upload status disapprove confirmed!");
-  }
+        
 
 </script>
-
