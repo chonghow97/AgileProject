@@ -27,7 +27,6 @@ $active_index = 0;
 		</div>
 	</div>
 </div>
-<h1 id="result">hi</h1>
 
 <?php 
 include './include/footer.php';
