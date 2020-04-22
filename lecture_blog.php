@@ -22,9 +22,6 @@ $active_index = 3;
 		<div class="container p-3">
 			<h3>Blog</h3>
 		<hr>
-<form class="col" action="Student_create_blog.php" method="post" enctype="">
- <button type="submit" class="btn btn-outline-primary form-group" value="create_article">Add Article</button>
-</form>
 
 <?php
 
@@ -43,7 +40,7 @@ confirm($query);
 
 
 echo "<div class='container border border-primary mb-3'>";
-echo "<a href='Student_comment_blog.php?pt_id=$post_id '>$title</a>";
+echo "<a href='Lecture_comment_blog.php?pt_id=$post_id '>$title</a>";
 echo "<hr>";
 echo "<small>By : $username</small>";
 echo "<br>";
@@ -62,9 +59,13 @@ echo "</div>";
 
 
 <script type="text/javascript">
-	$(function () {
-		$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
-	})
+		$(function () {
+			$(".alert").hide();
+			var TutorName = "";
+			//APPERENCE
+			$("#nav").addClass("bg-warning");
+			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-warning");
+		});
 </script>
 
 
