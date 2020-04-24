@@ -2,8 +2,8 @@
 $title = "E-learning";
 $name = "Student";
 include 'include/header.php';
-$sidebar = ['Dashboard','Message','Meeting','Blog','Assignment','Tutees Dashboard'];
-$url = ['lecture_dashboard.php','lecture_message.php','lecture_meeting.php','lecture_blog.php','lecture_uploads.php','lecture_tuteeList.php'];
+$sidebar = ['Dashboard','Message','Meeting','Blog','Assignment'];
+$url = ['lecture_dashboard.php','lecture_message.php','lecture_meeting.php','lecture_blog.php','lecture_uploads.php'];
 $active_index = 3;
 ?>
 <style type="text/css">
@@ -39,8 +39,8 @@ confirm($query);
     $content = $row['content'];
 
 
-echo "<div class='container border border-primary mb-3'>";
-echo "<a href='Lecture_comment_blog.php?pt_id=$post_id '>$title</a>";
+echo "<div class='container border border-warning mb-3'>";
+echo "<h3 class='p-1'><a class='text-warning' href='Lecture_comment_blog.php?pt_id=$post_id '>$title</a></h3>";
 echo "<hr>";
 echo "<small>By : $username</small>";
 echo "<br>";
