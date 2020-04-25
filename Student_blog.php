@@ -63,6 +63,8 @@ echo "</div>";
 
 <script type="text/javascript">
 	$(function () {
+		$(".navbar").addClass("bg-primary");
+			$(".navbar-brand").addClass("text-white");
 		$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
 	})
 </script>

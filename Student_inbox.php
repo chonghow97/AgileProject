@@ -2,8 +2,8 @@
 $title = "E-learning";
 $name = "Student";
 include 'include/header.php';
-$sidebar = ['Dashboard','Message','Meetings','Forums','Files / Uploads','Inbox'];
-$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','#','Student_uploads.php','Student_inbox.php'];
+$sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
+$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
 $active_index = 5;
 ?>
 <style type="text/css">
@@ -96,6 +96,8 @@ include './include/footer.php';
 ?>
 <script type="text/javascript">
   $(function () {
+    $(".navbar").addClass("bg-primary");
+      $(".navbar-brand").addClass("text-white");
     $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
   })
 </script>

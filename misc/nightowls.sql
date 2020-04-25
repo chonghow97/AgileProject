@@ -252,16 +252,20 @@ CREATE TABLE `uploads` (
   `upload_id` int(11) NOT NULL,
   `upload` text NOT NULL,
   `comment` varchar(225) NOT NULL DEFAULT 'No comment',
-  `date` date NOT NULL
+  `date` date NOT NULL,
+  `status` varchar(30) NOT NULL DEFAULT 'pending',
+  `topic` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `uploads`
 --
 
-INSERT INTO `uploads` (`upload_id`, `upload`, `comment`, `date`) VALUES
-(25, 'courseworks.PDF', 'Coursework assignment file', '2020-03-30'),
-(28, 'images.png', 'Image of outdoor activity', '2020-04-03');
+INSERT INTO `uploads` (`upload_id`, `upload`, `comment`, `date`, `status`, `topic`) VALUES
+(25, 'courseworks.PDF', 'Coursework assignment file', '2020-03-30', 'Disapproved', ''),
+(28, 'images.png', 'Image of outdoor activity', '2020-04-03', 'Approved', ''),
+(29, 'fyp proposal.pdf', '', '2020-04-03', 'pending', ''),
+(30, 'Admin.xd', 'ssdddaaasss', '2020-04-22', 'pending', '');
 
 --
 -- Indexes for dumped tables
@@ -377,7 +381,7 @@ ALTER TABLE `tutor`
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

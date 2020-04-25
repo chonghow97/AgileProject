@@ -2,8 +2,8 @@
 $title = "E-learning";
 $name = "lecture";
 include 'include/header.php';
-$sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
-$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
+$sidebar = ['Dashboard','Message','Meeting','Blog','Assignment'];
+$url = ['lecture_dashboard.php','lecture_message.php','lecture_meeting.php','lecture_blog.php','lecture_uploads.php'];
 $active_index = 3;
 ?>
 <style type="text/css">
@@ -39,8 +39,8 @@ confirm($query);
     $content = $row['content'];
 
 
-echo "<div class='container border border-primary mb-3'>";
-echo "<a href='Lecture_comment_blog.php?pt_id=$post_id '>$title</a>";
+echo "<div class='container border border-warning mb-3'>";
+echo "<h3 class='p-1'><a class='text-warning' href='Lecture_comment_blog.php?pt_id=$post_id '>$title</a></h3>";
 echo "<hr>";
 echo "<small>By : $username</small>";
 echo "<br>";
@@ -63,7 +63,7 @@ echo "</div>";
 			$(".alert").hide();
 			var TutorName = "";
 			//APPERENCE
-			$("#nav").addClass("bg-warning");
+			$(".navbar").addClass("bg-warning");
 			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-warning");
 		});
 </script>

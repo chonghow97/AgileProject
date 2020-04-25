@@ -9,6 +9,7 @@ $active_index = 0;
 ?>
  
 </div>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 <div class="container-fluid row">
 	<div class="list-group col-3 mt-3">
 
@@ -26,6 +27,14 @@ $active_index = 0;
 				<h3 class="mt-3">Task</h3>
 				<br>
 			<div class="row">
+						<div class="col-6">
+			<h3>Meeting</h3>
+			<canvas id="meeting" width="400" height="200"></canvas>
+		</div>
+		<div class="col-6">
+			<h3>Assignment</h3>
+			<canvas id="assignment" width="400" height="200"></canvas>
+		</div>
 				<ul class="list-group mb-3 col-xl-6">
 					<?php 
 						$a = query("SELECT count(appointment_id) FROM appointment WHERE status='Approved' AND username= '$name'");
@@ -51,12 +60,68 @@ $active_index = 0;
 				<?php 
 				include './include/footer.php';
 				 ?>
-	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 	<script type="text/javascript">
 		
 		$(function () {
 			$(".navbar").addClass("bg-primary");
 			$(".navbar-brand").addClass("text-white");
 			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
+					$.ajax({
+				url:"test1.php",
+				method:"GET",
+				success:function(data){
+					var a = JSON.parse(data);
+					console.log(a);
+					//meeting
+					var ctx = document.getElementById('meeting').getContext('2d');
+					var myChart = new Chart(ctx, {
+						type: 'line',
+						data: {
+							labels: a.date,
+							datasets: [{
+								data: a.count,
+								borderWidth: 1
+							}]
+						},
+						options: {
+							legend: {
+								display: false
+							},
+							tooltips: {
+								callbacks: {
+									label: function(tooltipItem) {
+										return tooltipItem.yLabel;
+									}
+								}
+							}
+						}
+					});
+					//Assignment
+					var ctl = document.getElementById('assignment').getContext('2d');
+					var Assignment = new Chart(ctl, {
+						type: 'bar',
+						data: {
+							labels: a.date,
+							datasets: [{
+								data: a.count,
+								borderWidth: 1
+							}]
+						},
+						options: {
+							legend: {
+								display: false
+							},
+							tooltips: {
+								callbacks: {
+									label: function(tooltipItem) {
+										return tooltipItem.yLabel;
+									}
+								}
+							}
+						}
+					});
+				}
+			})
 		})
 	</script>

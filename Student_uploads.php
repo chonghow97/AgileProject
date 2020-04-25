@@ -128,8 +128,9 @@ if(isset($_GET['disapprove'])) {
 			$(".alert").hide();
 			var TutorName = "";
 			//APPERENCE
-			$(".navbar").addClass("bg-warning");
-			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-warning");
+			$(".navbar").addClass("bg-primary");
+            $(".navbar-brand").addClass("text-white");
+			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
             function check_approve() {
             alert("Meeting status approve confirmed!");
         }
