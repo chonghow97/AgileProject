@@ -1,6 +1,6 @@
 <?php 
 $title = "E-learning";
-$name = "Student"; 
+$name = "lecture"; 
 include 'include/header.php';
 $sidebar = ['Dashboard','Message','Meeting','Blog','Assignment','Tutees Dashboard'];
 $url = ['lecture_dashboard.php','lecture_message.php','lecture_meeting.php','lecture_blog.php','lecture_uploads.php','lecture_tuteeList.php'];
@@ -24,21 +24,53 @@ $active_index = 4;
 	</div>
 			<div class="col-9 row p-3">
 				<div class="col-lg-9">
-					<h3 class="p-3">Assignment Approvement</h3>
+					<h3 class="p-3">Assignment</h3>
+
+        <form action="" method="post" enctype="multipart/form-data">
+
+   <?php 
+if (isset($_POST['create_upload'])) {
+
+    $topic = escape_string($_POST['topic']);
+
+    if (!empty($topic)) {
+      
+
+  $query = query("INSERT INTO uploads(topic) VALUES ('{$topic}')");
+  confirm($query);
+
+  echo "<script>alert('Assignment topic is created successfully!')</script>";
+
+    } else {
+
+      echo "<script>alert('Fields cannot be empty')</script>";
+
+    }
+    
+  }
+
+           ?>
+
+      <div class="form-group border p-3">
+        <label for="assignment">Create a Assignment Topic</label>
+        <input type="text" name="topic" class="form-control border-primary" placeholder="Create your assignment topic here......">
+<br>
+        <div class="form-group">
+        <button type="submit" name="create_upload" onclick="check_upload()" class="btn btn-outline-primary mb-2">Upload</button>
+      </div>
+    </div>
+    </form>
+
+   <!--  <hr> -->
 
 
     <table class="table col-10 mx-auto table-bordered table-hover">
       <thead>
         <tr class="warning p-3">
-          <th scope="col">Id</th>
-          <th scope="col">Name</th>
+          <th scope="col">Topic</th>
+          <th scope="col">Uploads File</th>
           <th scope="col">Comment</th>
           <th scope="col">Upload date</th>
-          <th scope="col">Status</th>
-          <th scope="col">Approve</th>
-          <th scope="col">Disapprove</th>
-          <th scope="col">Download</th>
-          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -48,24 +80,20 @@ $query = query("SELECT * FROM uploads ORDER BY upload_id DESC");
 confirm($query);
 
   while($row = mysqli_fetch_assoc($query)){
+
     $upload_id = $row['upload_id'];
+    $topic = $row['topic'];
     $upload = $row['upload'];
     $comment = $row['comment'];
     $date = $row['date'];
     $date = strtotime($date);
     $date = date('d M Y', $date);
-    $status = $row['status'];
 
     echo "<tr>";
-    echo "<th>$upload_id</th>";
-    echo "<th>$upload</th>";
+    echo "<th>$topic</th>";
+    echo "<th><a href='lecture_uploads.php?download={$upload_id}'>$upload</a></th>";
     echo "<th>$comment</th>";
     echo "<th>$date</th>";
-    echo "<th>$status</th>";
-    echo "<td><a href='lecture_uploads.php?approve={$upload_id}' class='btn btn-outline-success btn-sm' onclick='check_approve()'>Approve</a></td>";
-    echo "<td><a href='lecture_uploads.php?disapprove={$upload_id}' class='btn btn-outline-warning btn-sm' onclick='check_disapprove()'>Disapprove</a></td>";
-    echo "<td><a href='lecture_uploads.php?download={$upload_id}' class='btn btn-outline-primary btn-sm'>Download</a></td>";
-    echo "<td><a href='lecture_uploads.php?delete={$upload_id}' class='btn btn-outline-danger btn-sm' onclick='check_delete()'>Delete</a></td>";
     echo "</tr>";
 
 }
@@ -95,17 +123,6 @@ if(isset($_GET['disapprove'])) {
     header("Location: lecture_uploads.php");
 }
 
-
-if(isset($_GET['delete'])) {
-
-    $delete_upload_id = $_GET['delete'];
-    
-    $query = "DELETE FROM uploads WHERE upload_id = {$delete_upload_id} ";
-    $delete_query = mysqli_query($connection, $query);
-    header("Location: lecture_uploads.php");
-}
-
-
  ?>
 
 				</div>
@@ -132,19 +149,11 @@ if(isset($_GET['delete'])) {
 
 <script type="text/javascript">
 	
-function check_delete() {
-    alert("Delete confirmed!");
+function create_upload() {
+    alert("Upload successfully!");
   }
 
 
-function check_approve() {
-    alert("Upload status approve confirmed!");
-  }
-
-
-function check_disapprove() {
-    alert("Upload status disapprove confirmed!");
-  }
 
 </script>
 

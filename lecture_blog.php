@@ -1,6 +1,6 @@
 <?php 
 $title = "E-learning";
-$name = "Student";
+$name = "lecture";
 include 'include/header.php';
 $sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
 $url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];

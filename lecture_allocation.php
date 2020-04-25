@@ -1,6 +1,6 @@
 <?php 
 $title = "E-learning";
-$name = "Student";
+$name = "lecture";
 include './include/function.php';
 include './include/database.php';
 include './include/header.php';

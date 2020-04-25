@@ -1,10 +1,10 @@
 <?php 
 $title = "E-learning";
-$name = "Student"; 
+$name = "Student";
 include 'include/header.php';
-$sidebar = ['Dashboard','Message','Meeting','Blog','Assignment','Tutees Dashboard'];
-$url = ['lecture_dashboard.php','lecture_message.php','lecture_meeting.php','lecture_blog.php','lecture_uploads.php','lecture_tuteeList.php'];
-$active_index = 2;
+$sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
+$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
+$active_index = 4;
 ?>
 
 <style type="text/css">
