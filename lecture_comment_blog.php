@@ -2,8 +2,8 @@
 $title = "E-learning";
 $name = "lecture";
 include 'include/header.php';
-$sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
-$url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
+$sidebar = ['Dashboard','Message','Meeting','Blog','Assignment'];
+$url = ['lecture_dashboard.php','lecture_message.php','lecture_meeting.php','lecture_blog.php','lecture_uploads.php'];
 $active_index = 3;
 ?>
 <style type="text/css">
@@ -59,7 +59,7 @@ confirm($query);
 
             <!-- Article Details Post -->
 
-      <h2 style="color: blue;"><?php echo $title ?></h2>
+      <h2 class="text-warning"><?php echo $title ?></h2>
       <p>by <?php echo $username ?></p>
       <span><?php echo $date ?></span>
       <hr>
@@ -106,14 +106,13 @@ echo "<script>alert('Fields cannot be empty')</script>";
 
                <!-- Comments Form -->
                 <div class="col-md-9">
-                    <h4>Leave a Comment:</h4>
+                    <h4 class="text-warning">Leave a Comment:</h4>
                     <form action="" method="post" role="form">
 
                         <div class="form-group">
-                             <label for="comment">Comment</label>
-                            <textarea name="comment" class="form-control" rows="3"></textarea>
+                            <textarea name="comment" class="form-control border-warning mb-2" rows="3"></textarea>
                         </div>
-                        <button type="submit" name="create_comment" class="btn btn-primary">Submit</button>
+                        <button type="submit" name="create_comment" class="btn btn-outline-warning mb-2">Submit</button>
                     </form>
                 </div>
 
@@ -141,7 +140,7 @@ confirm($query);
       <div class="media">
       <hr>
         <div class="media-body">
-            <h4 class="media-heading"><?php echo $username ?></h4>
+            <h4 class="media-heading text-warning"><?php echo $username ?></h4>
             <small><?php echo $date ?></small><br>
             <?php echo $comment ?>
         </div>

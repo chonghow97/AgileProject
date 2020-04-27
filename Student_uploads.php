@@ -6,142 +6,131 @@ $sidebar = ['Dashboard','Message','Meetings','Blog','Assignment','Inbox'];
 $url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Student_blog.php','Student_uploads.php','Student_inbox.php'];
 $active_index = 4;
 ?>
-
 <style type="text/css">
-	*{
-		/*outline: 1px solid red;*/
-	}
-	#studentOut{
-		resize: none;
-	}
-    td{
-        color: #3d3d3d;
-    }
 </style>
 <div class="container-fluid row">
-	<div class="list-group col-3">
+  <div class="list-group col-3">
 
-		<?php include 'include/sidebar.php'; ?>
+    <?php 
+    include 'include/sidebar.php'; 
+    //include 'include/lecture-details.php';
+    ?>
+    
+
+  </div>
 
 
-	</div>  
-			<div class="col-9 row p-3 mx-auto">
-				<div class="col-lg-9">
-					<h3 class="p-3">Meeting Approvement</h3>
-<div class="overflow-auto mx-auto">
-<table class="table table-bordered table-hover overflow-auto">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Username</th>
-            <th>Title</th>
-            <th>Comment</th>
-            <th>Venue</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
+  <div class="col-9 p-3 row">
+
+    <div class="container p-3">
+      <h3>Upload Assignment</h3>
+    <hr>
+
+<?php create_upload(); ?>
+
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="row">
+            <div class="form-group col">
+              <label for="thread">Thread</label>
+              <select value="thread" name="thread" class="form-control border border-primary">
+                <option value="thread">Select Options</option>
+
 <?php 
 
-$query = query("SELECT * FROM appointment ORDER BY appointment_id DESC");
+$query = query("SELECT * FROM threads");
 confirm($query);
 
-    while ($row = fetch_array($query)) {
-    
-    $appointment_id = $row['appointment_id'];  
-    $username = $row['username'];
-    $title = $row['title'];
-    $comment = $row['comment'];
-	$type = $row['type'];
-    $venue = $row['venue'];
-    $time = $row['time'];
-    $date = $row['date'];
-    $date = strtotime($date);
-    $date = date('d M Y', $date);
-    $status = $row['status'];
+while($row = mysqli_fetch_assoc($query)){
 
-if($status == 'Approved'){
-    echo '<tr style="background-color:#03fcc2">';
-}elseif($status == 'Disapproved'){
-    echo '<tr style="background-color:#de5d93">';
-}
-else{
-    echo '<tr>';
-}
-echo "<td>$appointment_id</td>";
-echo "<td><b>$username<b></td>";
-echo "<td>$title</td>";
-echo "<td>$comment</td>";
-echo "<td><b>$venue ($type)</b><br> $time <br> $date</td>";
-echo "<td style='width: 110px'><div class='row mx-auto'><a href='lecture_meeting.php?approve=$appointment_id' class='btn btn-outline-dark btn-sm' onclick='check_approve()'>✔️</a>
-<a href='lecture_meeting.php?disapprove=$appointment_id' class='btn btn-outline-dark btn-sm ml-1' onclick='check_disapprove()'>❌</a></div></td>";
-echo "</tr>";
+    $thread_id = escape_string($row['thread_id']);
+    $thread = escape_string($row['thread']);
+
+    echo "<option value='{$thread_id}'>{$thread}</option>";
 
 }
-
 
 ?>
 
-    </tbody>
+              </select>
+            </div>
+          <div class="form-group col">
+            <label for="title">Title</label>
+            <input type="text" name="title" class="form-control border-primary" placeholder="Ex: Reports...">
+          </div>
+          </div>
+      <div class="form-group border p-3">
+        <label for="upload">Please Upload your file</label>
+        <input type="file" name="upload" class="form-control-file">
+        <br>
+        <button type="submit" name="create_upload" onclick="check_upload()" class="btn btn-outline-primary mb-2">Upload</button>
+      </div>
+    </form>
 
-</table>
+   <hr> 
+
+<div class="col-md-9 overflow-auto">
+    <ul class="list-group mb-3">
+  
+  <?php 
+  $query = query ("SELECT * FROM uploads ORDER BY upload_id DESC");
+  confirm($query);
+
+  while ($row = fetch_array($query)){
+
+     $upload_id = $row['upload_id'];
+     $upload_thread_id = $row['upload_thread_id'];
+     $title = $row['title'];
+     $upload = $row['upload'];
+     $comment = $row['comment'];
+     $date = $row['date'];
+     $date = strtotime($date);
+     $date = date('d M Y', $date);
+
+
+  $query = query("SELECT * FROM threads WHERE thread_id = {$upload_thread_id}");
+  confirm($query);
+
+while($row = mysqli_fetch_assoc($query)){
+
+    $thread_id = $row['thread_id'];
+    $thread = $row['thread'];
+
+        echo "<li class='list-group-item list-group-item-primary'>$thread</li>";
+    }
+
+    echo "<li class='list-group-item'>";
+    echo "<table class='col-12'>";
+    echo "<tr>";
+    echo "<td>$title</td>";
+    echo "<td rowspan='2'>$comment</td>";
+    echo "<td>$date</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td><a href='student_uploads.php?download={$upload}' download='{$upload}'>$upload</a></td>";
+    echo "</tr>";
+    echo "</table>";
+    echo "</li>";
+    echo "<br>";
+  }
+
+  ?>
+
+</ul>
+</div>
+        </div>
+  </div>
+
 </div>
 <?php 
-
-if(isset($_GET['approve'])) {
-
-    $approve_appointment_id = $_GET['approve'];
-    
-    $query = "UPDATE appointment SET status = 'Approved' WHERE appointment_id = $approve_appointment_id";    
-    $approve_query = mysqli_query($connection, $query);
-    header("Location: lecture_meeting.php");
-}
-
-
-if(isset($_GET['disapprove'])) {
-
-    $disapprove_appointment_id = $_GET['disapprove'];
-    
-    $query = "UPDATE appointment SET status = 'Disapproved' WHERE appointment_id = $disapprove_appointment_id";    
-    $disapprove_query = mysqli_query($connection, $query);
-    header("Location: lecture_meeting.php");
-}
-
-
-
-
-
- ?>
-
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<?php 
-	include './include/footer.php';
-	?>
-
-	<script type="text/javascript">
-		$(function () {
-			$(".alert").hide();
-			var TutorName = "";
-			//APPERENCE
-			$(".navbar").addClass("bg-primary");
-            $(".navbar-brand").addClass("text-white");
-			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
-            function check_approve() {
-            alert("Meeting status approve confirmed!");
-        }
-
-
-        function check_disapprove() {
-            alert("Meeting status disapprove confirmed!");
-        }
-        });
-
-	
-        
-
+include './include/footer.php';
+?>
+<script type="text/javascript">
+  $(function () {
+    $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
+  })
 </script>
+
+
+
+
+

@@ -106,21 +106,6 @@ $active_index = 2;
                 <option value="type">Select Options</option>
                 <option>Virtual</option>
                 <option>Real</option>
-
-                <?php 
-
-// $query = query("SELECT * FROM meeting_data");
-// confirm($query);
-
-// while ($row = mysqli_fetch_assoc($query)) {
-//         $meetingData_Id = $row['meetingData_Id'];
-//         $type = $row['type'];
-
-//         echo "<option value='{$meetingData_Id}'>{type}</option>";
-
-// }
-
-                ?>
               </select>
             </div>
 

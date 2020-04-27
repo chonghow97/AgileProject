@@ -44,7 +44,7 @@ while($row = mysqli_fetch_assoc($query)){
         <!--Inbox -->
         <div class="col mt-3">
           <div class="card" style="width: 35rem;">
-            <div class="card-header font-weight-bold">
+            <div class="card-header font-weight-bold list-group-item-primary">
               Inbox
             </div>
             <ul class="list-group list-group-flush">

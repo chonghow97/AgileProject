@@ -30,6 +30,10 @@ function fetch_array($result){
   return mysqli_fetch_array($result);
 }
 
+function fetch_assoc($result){
+ 
+  return mysqli_fetch_assoc($result);
+}
 
 /**********************STUDENT FUNCTIONS*************************/
 
@@ -164,20 +168,21 @@ if (isset($_POST['create_appointment'])) {
 function create_upload() {
 
   if (isset($_POST['create_upload'])) {
-  $topic = $_POST['topic'];
-  $comment = $_POST['comment'];
-  $date = date('d-m-y');
-  $upload = $_FILES['upload']['name'];
-  $upload_temp = $_FILES['upload']['tmp_name'];
+
+  $upload_thread_id = escape_string($_POST['thread']);
+  $title = escape_string($_POST['title']);
+  $upload = escape_string($_FILES['upload']['name']);
+  $upload_temp = escape_string($_FILES['upload']['tmp_name']);
+  $date = escape_string(date('d-m-y'));
 
   move_uploaded_file($upload_temp, "images/$upload");
 
-    if (!empty($upload) && !empty($date)) {
+    if (!empty($upload_thread_id) && !empty($title) && !empty($upload)) {
 
-      $query = query("INSERT INTO uploads(upload, comment, date,topic) VALUES ('{$upload}', '{$comment}', now(),'{$topic}' )");
+      $query = query("INSERT INTO uploads (upload_thread_id, username, title, upload, date) VALUES ('{$upload_thread_id}', '{$_SESSION['username']}', '{$title}', '{$upload}', now() )");
       confirm($query);
 
-      echo "<script>alert('Topic has been created')</script>";
+      echo "<script>alert('Files have been uploaded')</script>";
 
     } else {
 
@@ -275,8 +280,8 @@ function allocate() {
 
   if (isset($_POST['allocate'])) {
     
-  $allocate_tutor = $_POST['tutorOut'];
-  $allocate_student = $_POST['studentOut'];
+  $allocate_tutor = escape_string($_POST['tutorOut']);
+  $allocate_student = escape_string($_POST['studentOut']);
 
     if (!empty($allocate_tutor) && !empty($allocate_student)) {
 
@@ -342,6 +347,7 @@ if ($email === $lecture_login_email && $password === $lecture_login_password) {
 }
 
 if(isset($_POST["allocation"])){
+  
   $tId = $_POST["allocation"]["tutor"];
   $sId = "studId =".implode(" OR studId= ", $_POST["allocation"]["student"]);
   //reset
@@ -349,6 +355,30 @@ if(isset($_POST["allocation"])){
    $query = query("UPDATE student SET tutor= $tId WHERE $sId");
     confirm($query);
     echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'> <strong>".count($_POST["allocation"]["student"])."</strong> Student has been allocated</strong> <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>";
+}
+
+
+function create_thread(){
+
+  if (isset($_POST['create_thread'])) {
+
+    $thread = escape_string($_POST['thread']);
+
+    if (!empty($thread)) {
+      
+      $query = query("INSERT INTO threads(thread) VALUES ('{$thread}')");
+      confirm($query);
+
+      echo "<script>alert('Assignment thread is created successfully!')</script>";     
+
+    } else {
+
+      echo "<script>alert('Fields cannot be empty')</script>"; 
+
+    }
+    
+  }
+
 }
 
  ?>
