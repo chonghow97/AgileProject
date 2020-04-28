@@ -38,8 +38,8 @@ margin-left: 40px;
 </div>
 
 <div class="container-md p-3 text-center mt-5">
-<img src="https://dummyimage.com/200x200/ffc107/000.png&text=Logo+Here" alt="..." class="img-thumbnail">
-<h1 class="p-3">E-learning</h1>
+<img src="https://st2.depositphotos.com/5266903/8714/v/950/depositphotos_87149376-stock-illustration-bacteria-lecture-icon.jpg" width="200" height="200px" class="img-thumbnail">
+<h1 class="p-3 text-warning">E-learning</h1>
 
   <form class="p-3 border border-warning text-left col-5 mx-auto" action="#" method="post">
   <?php lecture_login(); ?>
@@ -51,10 +51,7 @@ margin-left: 40px;
     <input name="password" type="password" class="form-control" id="" placeholder="Enter Password">
     <!-- <small class="text-danger">Wrong Password. Please check again</small> -->
   </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label " for="exampleCheck1">Remember Me</label>
-  </div>
+
   <button type="submit" name="lecture_login" class="btn btn-outline-warning">Submit</button>
   </form>
 </div>

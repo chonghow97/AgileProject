@@ -36,7 +36,7 @@ confirm($query);
     $date = $row['date'];
     $date = strtotime($date);
     $date = date('d M Y', $date);
-    $content = $row['content'];
+    $content = substr($row['content'],0, 200);
 
 
 echo "<div class='container border border-warning mb-3'>";
@@ -45,7 +45,7 @@ echo "<hr>";
 echo "<small>By : $username</small>";
 echo "<br>";
 echo "<small>$date</small>";
-echo "<p>$content</p>";
+echo "<p>$content....</p>";
 echo "</div>";
 
  } 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2020 at 12:20 PM
+-- Generation Time: Apr 28, 2020 at 07:16 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -48,29 +48,6 @@ INSERT INTO `admin` (`adminId`, `username`, `password`, `firstName`, `lastName`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `allocate`
---
-
-CREATE TABLE `allocate` (
-  `allocateId` int(11) NOT NULL,
-  `allocate_tutor` varchar(30) NOT NULL,
-  `allocate_student` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `allocate`
---
-
-INSERT INTO `allocate` (`allocateId`, `allocate_tutor`, `allocate_student`) VALUES
-(16, '8', '3,4,2'),
-(17, '8', '1,2'),
-(18, '1', '6,4,8'),
-(19, '11', '1'),
-(21, '1', '');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `appointment`
 --
 
@@ -86,20 +63,6 @@ CREATE TABLE `appointment` (
   `status` varchar(50) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `appointment`
---
-
-INSERT INTO `appointment` (`appointment_id`, `username`, `title`, `date`, `time`, `type`, `venue`, `comment`, `status`) VALUES
-(41, 'student', 'Assignment', '2020-04-01', '09:00:00', 'Real', 'Classroom', 'Courserwork', 'Disapproved'),
-(42, 'James Richard', 'Coursework', '2020-04-02', '11:30:00', 'Virtual', 'None', 'Coursework assignment file', 'Disapproved'),
-(43, 'student', 'Test', '2020-04-08', '11:30:00', 'Virtual', 'None', 'Testing meeting', 'Disapproved'),
-(44, 'student', 'Test 2', '2020-04-06', '15:00:00', 'Real', 'Foyer', 'Testing meeting 2', 'Approved'),
-(45, 'James Richard', 'Test 3', '2020-04-03', '17:00:00', 'Real', 'Hall', 'Testing meeting 3', 'Approved'),
-(46, 'student', 'Test 3', '2020-04-08', '07:00:00', 'Real', 'Foyer', 'testing....', 'Approved'),
-(47, 'student', 'Test 4', '2020-04-09', '12:00:00', 'Real', 'Foyer', 'testing aks', 'Disapproved'),
-(48, 'student', 'Test 4', '2020-04-21', '14:01:00', 'Real', 'Classroom', 'fghfghfhfh', 'pending');
-
 -- --------------------------------------------------------
 
 --
@@ -114,17 +77,6 @@ CREATE TABLE `comment` (
   `comment` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `comment`
---
-
-INSERT INTO `comment` (`comment_id`, `comment_post_id`, `username`, `date`, `comment`) VALUES
-(1, 2, 'rico', '2020-04-22', 'testing'),
-(2, 4, 'student', '2020-04-22', 'hello'),
-(3, 4, 'student', '2020-04-22', 'hi again'),
-(4, 6, 'student', '2020-04-22', 'hi, hw r u..'),
-(5, 6, 'tutor', '2020-04-22', 'I am fine, thank you fizah.');
-
 -- --------------------------------------------------------
 
 --
@@ -138,15 +90,6 @@ CREATE TABLE `message` (
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `message`
---
-
-INSERT INTO `message` (`message_id`, `username`, `message`, `date`) VALUES
-(23, 'Student', 'Hi Sir', '2020-04-01'),
-(29, 'tutor', 'Hi student', '2020-04-02'),
-(30, 'student', 'hw r u?', '2020-04-08');
-
 -- --------------------------------------------------------
 
 --
@@ -155,10 +98,10 @@ INSERT INTO `message` (`message_id`, `username`, `message`, `date`) VALUES
 
 CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
-  `title` varchar(50) NOT NULL,
+  `title` varchar(225) NOT NULL,
   `username` varchar(50) NOT NULL,
   `date` date NOT NULL,
-  `content` varchar(225) NOT NULL
+  `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -166,13 +109,7 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`post_id`, `title`, `username`, `date`, `content`) VALUES
-(1, 'hello', 'jazzy', '2020-04-22', 'This is a great article. '),
-(2, 'yoyo', 'rico', '2020-04-23', 'Another yoyo article. This is good.'),
-(3, 'Test ', 'student', '0000-00-00', 'testing works'),
-(4, 'Test 2', 'student', '2020-04-22', 'Does this works'),
-(5, 'Test 4', 'student', '2020-04-22', 'testing done'),
-(6, 'Hello fizah', 'student', '2020-04-22', 'HI welcome to the blog article'),
-(7, 'Test 4', 'student', '2020-04-22', 'hjassjdnkasjdbsahgdhsadjhsadbh');
+(9, 'Lorem Ipsum test', 'student', '2020-04-28', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at nisl dignissim, volutpat mi at, accumsan diam. Morbi vel fringilla enim. Nullam sagittis suscipit mollis. Pellentesque lobortis, ligula et auctor ultricies, libero sapien lacinia est, vel posuere nisl elit quis velit. Curabitur a lobortis urna. Praesent et nibh at augue volutpat iaculis. Sed suscipit sapien diam, in pharetra libero blandit a. Donec lobortis diam et ex suscipit pellentesque. Vivamus feugiat, tortor non finibus dictum, tortor enim congue sem, sit amet commodo urna nunc ut nibh.\r\n\r\nMauris venenatis rhoncus nibh quis lobortis. Sed vel dolor tempus leo dictum tristique non id lorem. Donec viverra turpis eget metus feugiat pulvinar. Nullam fermentum venenatis tincidunt. Praesent tempor dictum posuere. Morbi ultrices justo vitae purus suscipit placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum aliquet porttitor sem sed faucibus. In consectetur vehicula mollis. Proin fringilla velit et ipsum consequat, sit amet eleifend enim ultrices. Ut elementum leo ut quam rhoncus, non mattis turpis lobortis. Fusce ac mattis nisi. Pellentesque et libero erat.\r\n\r\nNam molestie congue nisl ut blandit. Maecenas non urna placerat, pharetra dolor a, faucibus neque. Nullam lacus nisi, bibendum sodales finibus vitae, egestas eu neque. Nam sed lectus at erat volutpat maximus nec quis ex. Etiam sed lectus eros. Fusce imperdiet luctus efficitur. Vestibulum facilisis eros consectetur lorem aliquam tempor. Aliquam erat volutpat. Ut dictum dui quis orci ullamcorper, quis egestas enim tincidunt. Nunc rutrum eu mauris sed porttitor. Donec vel orci sit amet elit lobortis viverra eu quis metus. Suspendisse ac orci luctus, scelerisque leo id, gravida massa. Fusce elit elit, luctus ut laoreet sed, aliquet nec dolor. Vivamus convallis ut massa a posuere.\r\n\r\nNulla ac arcu nunc. In non enim ex. Mauris sagittis sollicitudin dui. Proin turpis justo, rutrum quis turpis eu, vulputate suscipit nunc. Aliquam efficitur placerat ipsum, et porta neque condimentum in. Cras aliquet ante pretium auctor luctus. Pellentesque egestas elit sed erat interdum, vel cursus velit condimentum. Aenean imperdiet orci vitae lacus sodales, non lobortis tortor fringilla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed scelerisque metus a luctus maximus. Cras nec hendrerit ex, in blandit metus. Donec cursus, nulla nec lacinia convallis, sapien sapien tempor nisi, dapibus mollis risus magna non nulla. Curabitur elementum, tellus sed posuere aliquam, tortor sapien lacinia nisl, a maximus nisl neque nec felis. In iaculis tellus nunc, at varius libero convallis vitae. Curabitur sed mollis felis, a dignissim risus.\r\n\r\nMorbi eget leo vitae lorem luctus lacinia vel vel sapien. Nullam in nisl ac magna euismod vestibulum. Donec interdum lacus vel ornare rutrum. Duis at sapien eu velit tempus auctor. Donec semper ipsum non urna maximus eleifend. Sed lacinia ligula ut lacus interdum pellentesque. Ut dui arcu, molestie vel mi in, imperdiet luctus velit. Nam bibendum lacus mauris, a dignissim arcu ullamcorper et. Aenean viverra mollis dapibus. Mauris at vestibulum tortor. Phasellus sollicitudin sed urna a iaculis.');
 
 -- --------------------------------------------------------
 
@@ -187,7 +124,6 @@ CREATE TABLE `student` (
   `firstName` varchar(50) NOT NULL,
   `lastName` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `role` varchar(30) NOT NULL DEFAULT 'student',
   `Tutor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -195,19 +131,25 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`studId`, `username`, `password`, `firstName`, `lastName`, `email`, `role`, `Tutor`) VALUES
-(1, 'junecrawford', '*6691484EA6B50DDDE1926A220DA01FA9E575C18A', 'June', 'Crawford', 'junecrawford12@gmail.com', 'student', 0),
-(2, 'blairhooper', '*FA35C895070370A8E0FAA793FED74F0CFDBF0F30', 'Blair', 'Hooper', 'blairhoope32@gmail.com', 'student', 9),
-(3, 'ellenrory', '*84F164907546B257C16DDECEF4A812F6B53BB1C0', 'Ellen', 'Rory', 'rory123@gmail.com', 'student', 7),
-(4, 'berlynnHarris', '*5050491B41CB33B1654946FC9A73980ED3398B58', 'Berlynn', 'Harris', 'berlynnHarris66@gmail.com', 'student', 0),
-(5, 'wilson', '*F8D8635127425FA4728404E74CE078A4858FB632', 'Wilson', 'Sanders', 'wilsonsanders123@gmail.com', 'student', 0),
-(6, 'rachellee', '*242CDBDE76385C008FEBAB372DE3836D669ECAFA', 'Rachel', 'Lee', 'rachellee123@gmail.com', 'student', 5),
-(7, 'allanjohns', '*90A1E02148BBD73DA1D7BD9842DA87BE8A418712', 'Allan', 'Johns', 'allanjohn123@gmail.com', 'student', 9),
-(8, 'arelyholland', '*2396488DAB1391917F9F4547C7B1D3F5E7B0A3A9', 'Arely', 'Holland', 'arelyholland123@gmail.com', 'student', 0),
-(9, 'tyronechang', '*11BD51004DEED40B977E5F919D2E6E6C293A961D', 'Tyrone', 'Chang', 'tyronechang123@gmail.com', 'student', 5),
-(10, 'geraldhansen', '*3E7A3F571C1BFC3E88BB2AC74B0ED3354AA27988', 'Gerald', 'Hansen', 'geraldhansen123@gmail.com', 'student', 7),
-(11, 'student', 'student123', 'Samuel Matthew', 'Joel', 'student@gmail.com', 'student', 0),
-(13, 'James Richard', 'jr321', 'James ', 'Richard', 'jamesrichard@gmail.com', 'student', 0);
+INSERT INTO `student` (`studId`, `username`, `password`, `firstName`, `lastName`, `email`, `Tutor`) VALUES
+(1, 'junecrawford', 'jc123', 'June', 'Crawford', 'junecrawford12@gmail.com', 0),
+(2, 'blairhooper', 'bh123', 'Blair', 'Hooper', 'blairhoope32@gmail.com', 0),
+(3, 'ellenrory', 'er123', 'Ellen', 'Rory', 'rory123@gmail.com', 0),
+(4, 'berlynnHarris', 'bh123', 'Berlynn', 'Harris', 'berlynnHarris66@gmail.com', 0),
+(10, 'geraldhansen', '*3E7A3F571C1BFC3E88BB2AC74B0ED3354AA27988', 'Gerald', 'Hansen', 'geraldhansen123@gmail.com', 0),
+(11, 'student', 'student123', 'Samuel Matthew', 'Joel', 'student@gmail.com', 0),
+(13, 'James Richard', 'jr321', 'James ', 'Richard', 'jamesrichard@gmail.com', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `threads`
+--
+
+CREATE TABLE `threads` (
+  `thread_id` int(11) NOT NULL,
+  `thread` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -221,26 +163,19 @@ CREATE TABLE `tutor` (
   `password` varchar(50) NOT NULL,
   `firstName` varchar(50) NOT NULL,
   `lastName` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `role` varchar(30) NOT NULL DEFAULT 'tutor'
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tutor`
 --
 
-INSERT INTO `tutor` (`tutorId`, `username`, `password`, `firstName`, `lastName`, `email`, `role`) VALUES
-(1, 'alissawatson', '*F2D4AC5311973E82879D4B832212BB66B1B90EA8', 'Alissa', 'Watson', 'alissawatson123@gmail.com', 'tutor'),
-(2, 'andreavaughn', '*C47234366547E789588997F4DC2DB8197C125A85', 'Andrea', 'Vaughn', 'andreavaughn123@gmail.com', 'tutor'),
-(3, 'parkerfernandez', '*27AAE1CB2017138EB2F1849C6C98478EB879FCC6', 'Parker', 'Fernandez', 'parkerfernandez123@gmail.com', 'tutor'),
-(4, 'joannawoods', '*75916FA6AC9D0FF2DD9CB98CAED5AA1EEA626AA0', 'Joanna', 'Woods', 'joannawoods1223@gmail.com', 'tutor'),
-(5, 'sammysutton', '*CAE63E62F3CB90F53A35D5A16BC7CAED7D578C8A', 'Sammy', 'Sutton', 'sammysutton123@gmail.com', 'tutor'),
-(6, 'hayleebates', '*2291A16C63B3D01435F65438847501944A57A866', 'Haylee', 'Bates', 'hayleebates123@gmail.com', 'tutor'),
-(7, 'charleesilva', '*ED2910D312B314CD3DDB5D11163F01B75ACB8E82', 'Charlee', 'Silva', 'hayleebates123@gmail.com', 'tutor'),
-(8, 'dianamassey', '*076A995FF0AFD5D56DD0A6AA9105CDD67AEEB05A', 'Diana', 'Massey', 'dianamassey123@gmail.com', 'tutor'),
-(9, 'kysononeal', '*1B7AFB3189046E2F5439DE349219C08A3A543F6F', 'Kyson', 'Oneal', 'kysononeal123@gmail.com', 'tutor'),
-(10, 'shawncarlson', '*F0DE2018D6B92B3EF53B849390075AA0EBC407F1', 'Shawn', 'Carlson', 'shawncarlson123@gmail.com', 'tutor'),
-(11, 'tutor', 'tutor123', 'Susan', 'Grace', 'tutor@gmail.com', 'tutor');
+INSERT INTO `tutor` (`tutorId`, `username`, `password`, `firstName`, `lastName`, `email`) VALUES
+(1, 'alissawatson', 'aw123', 'Alissa', 'Watson', 'alissawatson123@gmail.com'),
+(2, 'andreavaughn', 'av123', 'Andrea', 'Vaughn', 'andreavaughn123@gmail.com'),
+(3, 'parkerfernandez', 'pf123', 'Parker', 'Fernandez', 'parkerfernandez123@gmail.com'),
+(8, 'dianamassey', 'dm123', 'Diana', 'Massey', 'dianamassey123@gmail.com'),
+(11, 'tutor', 'tutor123', 'Susan', 'Grace', 'tutor@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -250,22 +185,13 @@ INSERT INTO `tutor` (`tutorId`, `username`, `password`, `firstName`, `lastName`,
 
 CREATE TABLE `uploads` (
   `upload_id` int(11) NOT NULL,
+  `upload_thread_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `title` varchar(50) NOT NULL,
   `upload` text NOT NULL,
   `comment` varchar(225) NOT NULL DEFAULT 'No comment',
-  `date` date NOT NULL,
-  `status` varchar(30) NOT NULL DEFAULT 'pending',
-  `topic` varchar(30) NOT NULL
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `uploads`
---
-
-INSERT INTO `uploads` (`upload_id`, `upload`, `comment`, `date`, `status`, `topic`) VALUES
-(25, 'courseworks.PDF', 'Coursework assignment file', '2020-03-30', 'Disapproved', ''),
-(28, 'images.png', 'Image of outdoor activity', '2020-04-03', 'Approved', ''),
-(29, 'fyp proposal.pdf', '', '2020-04-03', 'pending', ''),
-(30, 'Admin.xd', 'ssdddaaasss', '2020-04-22', 'pending', '');
 
 --
 -- Indexes for dumped tables
@@ -276,12 +202,6 @@ INSERT INTO `uploads` (`upload_id`, `upload`, `comment`, `date`, `status`, `topi
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`adminId`);
-
---
--- Indexes for table `allocate`
---
-ALTER TABLE `allocate`
-  ADD PRIMARY KEY (`allocateId`);
 
 --
 -- Indexes for table `appointment`
@@ -314,6 +234,12 @@ ALTER TABLE `student`
   ADD PRIMARY KEY (`studId`);
 
 --
+-- Indexes for table `threads`
+--
+ALTER TABLE `threads`
+  ADD PRIMARY KEY (`thread_id`);
+
+--
 -- Indexes for table `tutor`
 --
 ALTER TABLE `tutor`
@@ -336,12 +262,6 @@ ALTER TABLE `admin`
   MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `allocate`
---
-ALTER TABLE `allocate`
-  MODIFY `allocateId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
@@ -351,7 +271,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -363,13 +283,19 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
   MODIFY `studId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `threads`
+--
+ALTER TABLE `threads`
+  MODIFY `thread_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tutor`
@@ -381,7 +307,7 @@ ALTER TABLE `tutor`
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

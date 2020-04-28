@@ -37,7 +37,7 @@ margin-left: 40px;
   <a href="./lecture_index.php" class="btn btn-warning ml-3">Lecture</a>
 </div>
 <div class="container-md p-3 text-center mt-5">
-<img src="https://dummyimage.com/200x200/007bff/fff.png&text=Logo+Here" alt="..." class="img-thumbnail">
+<img src="https://images.all-free-download.com/images/graphiclarge/student_and_education_logo_free_download_6820451.jpg" width="200" height="200px" class="img-thumbnail">
 <h1 class="p-3 text-primary">E-learning</h1>
 
   <form class="p-3 border border-primary text-left col-5 mx-auto" action="#" method="post">
@@ -50,11 +50,6 @@ margin-left: 40px;
   <div class="form-group">
     <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
     <!-- <small class="text-danger">Wrong Password. Please check again</small> -->
-  </div>
-
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label text-primary" for="exampleCheck1">Remember Me</label>
   </div>
 
   <button type="submit" name="login" class="btn btn-outline-primary">Submit</button>

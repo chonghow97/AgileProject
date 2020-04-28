@@ -36,11 +36,11 @@ margin-left: 40px;
   <a href="Admin_index.php" class="btn btn-secondary ml-3">Admin</a>
   <a href="Lecture_index.php" class="btn btn-warning ml-3">Lecture</a>
 </div>
-<div class="container-md p-3 text-center mt-5">
-<img src="https://dummyimage.com/200x200/343a40/fff.png&text=Logo+Here" alt="..." class="img-thumbnail">
+<div class="container-md p-3 text-center mt-5 ">
+<img src="https://images-platform.99static.com/ak8GjXUhsuZmv0cdGPdEotUK5dw=/150x150:1350x1350/500x500/top/smart/99designs-contests-attachments/94/94788/attachment_94788434" width="200" height="200px" class="img-thumbnail border-secondary">
 <h1 class="p-3">E-learning</h1>
 
-  <form class="p-3 border text-left col-5 mx-auto" action="#" method="post">
+  <form class="p-3 border text-left col-5 mx-auto border-secondary" action="#" method="post">
   <?php admin_login(); ?>
     <div class="form-group">
     <input name="email" type="email" placeholder="Enter Email address" class="form-control" id="" aria-describedby="emailHelp">
@@ -49,10 +49,6 @@ margin-left: 40px;
   <div class="form-group">
     <input name="password" type="password" class="form-control" id="" placeholder="Enter Password">
     <!-- <small class="text-danger">Wrong Password. Please check again</small> -->
-  </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Remember Me</label>
   </div>
   <button type="submit" name="admin_login" class="btn btn-outline-dark">Submit</button>
   </form>

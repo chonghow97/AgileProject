@@ -68,7 +68,7 @@ if (isset($_POST['create_article'])) {
           <label for="content">Content</label>
           <textarea type="text" name="content" class="form-control border-primary" placeholder="Article content..." rows="4"></textarea>
         </div>
-        
+          <button class="btn btn-outline-primary form-group" ><a href="Student_blog.php">Back</a></button>        
         <button type="submit" name="create_article" class="btn btn-outline-primary form-group" value="Article">Submit</button>
       </form>
       </div>

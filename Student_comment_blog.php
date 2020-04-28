@@ -70,7 +70,7 @@ confirm($query);
       
 </div>
 
-<?php
+<?php 
 
 
 if (isset($_POST['create_comment'])) {

@@ -7,15 +7,17 @@ $url = ['Student_dashboard.php','Student_message.php','Student_meeting.php','Stu
 $active_index = 4;
 ?>
 <style type="text/css">
+  #chat{
+    bottom: 33px;
+  }
 </style>
 <div class="container-fluid row">
   <div class="list-group col-3">
 
     <?php 
-    include 'include/sidebar.php'; 
-    //include 'include/lecture-details.php';
+    include './include/sidebar.php'; 
+    //include './include/lecture-details.php';
     ?>
-    
 
   </div>
 
@@ -126,6 +128,8 @@ include './include/footer.php';
 ?>
 <script type="text/javascript">
   $(function () {
+    $(".navbar").addClass("bg-primary");
+    $(".navbar-brand").addClass("text-white");
     $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
   })
 </script>
