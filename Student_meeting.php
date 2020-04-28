@@ -114,7 +114,7 @@ $active_index = 2;
             <div class="form-group col">
               <label for="venue">Venue</label>
               <select value="venue" name="venue" class="form-control border border-primary">
-                <option value="venue">Select Options</option>
+                <option value="venue" disbaled>Select Options</option>
                 <option>None</option>
                 <option>Classroom</option>
                 <option>Foyer</option>
