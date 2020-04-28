@@ -90,7 +90,7 @@ while($row = fetch_assoc($query)) {
     echo "<th>$thread</th>";
 }
 
-    echo "<th>$upload_thread_id</th>";
+    // echo "<th>$upload_thread_id</th>";
     echo "<th>$username</th>";
     echo "<th>$title</th>";
     echo "<th><a class='text-warning' href='lecture_uploads.php?download={$upload_id}'>$upload</a></th>";

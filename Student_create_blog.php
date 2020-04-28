@@ -46,8 +46,8 @@ if (isset($_POST['create_article'])) {
   $query = query("INSERT INTO post(title, username, date, content) VALUES ('{$title}', '{$_SESSION['username']}', now(), '{$content}')");
   confirm($query);
 
-  echo "<script>alert('Post is created successfully!')</script>";
-
+  echo "<script>alert('Post is created successfully!')
+  window.location.href = './Student_blog.php'</script>";
     } else {
 
       echo "<script>alert('Fields cannot be empty')</script>";

@@ -153,7 +153,9 @@ if (isset($_POST['create_appointment'])) {
   $query = query("INSERT INTO appointment(username, title, date, time, type, venue, comment) VALUES ('{$_SESSION['username']}', '{$title}', '{$date}','{$time}','{$type}','{$venue}','{$comment}')");
   confirm($query);
 
-  echo "<script>alert('Meeting appointment is created successfully!')</script>";
+  echo "<script>alert('Meeting appointment is created successfully!')
+  window.location.href = './student_meeting.php';
+</script>";
 
     } else {
 

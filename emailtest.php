@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 $conn=mysqli_connect("localhost","root","","nightowls");
 
 //include required phpmailer filesize
@@ -76,10 +72,3 @@ else
 	
 
 ?>
-
-<script>
-	function message() {
-		
-		
-	}
-</script>

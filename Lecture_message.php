@@ -29,7 +29,7 @@ $active_index = 1;
   <div class="col-9 row p-3">
     <div class="container border border-warning">
       <!-- conversation -->
-      <div class="flex-column mb-3 p-3" style="height: 78vh">
+      <div class="flex-column mb-3 p-3 overflow-auto" style="height: 78vh">
 <?php
 
     $query = query("SELECT * FROM message");
@@ -66,6 +66,7 @@ if (isset($_POST['submit'])) {
 
   echo "<h5 class='text-warning'>{$_SESSION['username']}</h5>";
   echo "<p>{$message}</p>";
+  header("Location: Lecture_message.php");
 }
 
 
@@ -75,10 +76,15 @@ if (isset($_POST['submit'])) {
 <!--         <div class="form-group mx-sm-3 mb-2">
           <input type="text" name="username" class="form-control border-warning" id="inputPassword2" placeholder="Username" style="width: 50vw">
         </div> -->
-        <div class="form-group mx-sm-3 mb-2">
-          <input type="text" name="message" class="form-control border-warning" id="inputPassword2" placeholder="Chat here..." style="width: 50vw">
+        <div class="form-group mx-sm-3 mb-2 row">
+          <div class="col-10">
+            <input type="text" name="message" class="form-control border-warning" id="inputPassword2" placeholder="Chat here..." style="width: 50vw">
+          </div>
+          <div class="col-2">
+            <button type="submit" name="submit" class="btn btn-outline-warning mb-2">Send</button>
+          </div>
         </div>
-        <button type="submit" name="submit" class="btn btn-outline-warning mb-2">Send</button>
+        
       </form>
     </div>
   </div>

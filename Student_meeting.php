@@ -102,23 +102,24 @@ $active_index = 2;
           <div class="row">
             <div class="form-group col">
               <label for="type">Type of Meeting</label>
-              <select name="type" class="form-control border border-primary">
+              <select name="type" class="form-control border border-primary type">
                 <option value="type">Select Options</option>
-                <option>Virtual</option>
-                <option>Real</option>
+                <option value="1">Virtual</option>
+                <option value="2">Real</option>
               </select>
             </div>
 
 
 
-            <div class="form-group col">
+            <div class="form-group col vanue">
               <label for="venue">Venue</label>
-              <select value="venue" name="venue" class="form-control border border-primary">
-                <option value="venue" disbaled>Select Options</option>
-                <option>None</option>
-                <option>Classroom</option>
-                <option>Foyer</option>
-                <option>Hall</option>
+              <select value="venue" name="venue" class="form-control border border-primary venue1" >
+                <option >Select Options</option>
+                <option class="virtual">Zoom</option>
+                <option class="virtual">Google Hangout</option>
+                <option class="real">Classroom</option>
+                <option class="real">Foyer</option>
+                <option class="real">Hall</option>
               </select>
             </div>
           </div>
@@ -138,6 +139,8 @@ include './include/footer.php';
 ?>
 <script type="text/javascript">
   $(function () {
+    $(".vanue").hide();
+
     var today = new Date();
     var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
@@ -154,6 +157,17 @@ $('#date1').attr("min", today);
 $(".navbar").addClass("bg-primary");
 $(".navbar-brand").addClass("text-white");
 $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
+
+$(".type").change(function () {
+  $(".vanue").show();
+  $(".real").hide();
+  $(".virtual").hide();
+  if($(".type option:selected").val() === "1"){
+    $(".real").show();
+  }else{
+    $(".virtual").show();
+  }
+})
 })
 </script>
 

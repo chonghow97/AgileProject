@@ -1,4 +1,5 @@
 <?php 
+
 $title = "E-learning";
 $name = "Student";
 include 'include/header.php';
@@ -26,14 +27,13 @@ $active_index = 1;
   <div class="col-9 row p-3">
     <div class="container border border-primary">
       <!-- conversation -->
-      <div class="flex-column mb-3 p-3" style="height: 78vh">
+      <div class="flex-column mb-3 p-3 overflow-auto" style="height: 78vh">
 
 <?php
 
 
     $query = query("SELECT * FROM message ");
     confirm($query);
-
     while ($row = fetch_array($query)) {
       
     $username = $row['username'];
@@ -46,6 +46,8 @@ $active_index = 1;
     echo "<small class='float-right font-weight-bold text-uppercase'>$date</small>";
     echo "<p>{$message}</p>";
     echo "<hr>";
+
+
     }
 
 ?>       
@@ -58,12 +60,9 @@ if (isset($_POST['submit'])) {
   //$username = escape_string($_POST['username']);
   $message = escape_string($_POST['message']);
   $date = date('d-m-y');
-
   $query = query("INSERT INTO message(username, message, date) VALUES ('{$_SESSION['username']}',  '{$message}', now())");
   confirm($query);
-
-  echo "<h5 style='color:blue;'>{$_SESSION['username']}</h5>";
-  echo "<p>{$message}</p>";
+  header("Location: ./Student_message.php");
 }
 
 
@@ -89,6 +88,9 @@ include './include/footer.php';
     $(".navbar").addClass("bg-primary");
       $(".navbar-brand").addClass("text-white");
     $(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
+    function append(){
+
+    }
   })
 </script>
 
