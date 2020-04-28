@@ -1,5 +1,5 @@
 <?php 
-	include_once 'include/function.php';
+	include_once '../include/function.php';
 	$query = query("select count(date),date from appointment group by `date`");
 	confirm($query);
 	$date = array();

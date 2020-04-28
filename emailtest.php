@@ -59,8 +59,8 @@ $mail ->Port = "587";
    
 
     $mail->send();
-    echo 'Message has been sent';
 
+    echo "<script>alert('Message has been sent'); window.location.href = './admin_dashboard.php';</script>";
 
 
  }
@@ -76,3 +76,10 @@ else
 	
 
 ?>
+
+<script>
+	function message() {
+		
+		
+	}
+</script>

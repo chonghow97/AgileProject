@@ -68,7 +68,7 @@ $active_index = 0;
 			$(".navbar-brand").addClass("text-white");
 			$(".list-group-item:nth(<?php echo $active_index ?>)").addClass("list-group-item-primary");
 					$.ajax({
-				url:"test1.php",
+				url:"./misc/test1.php",
 				method:"GET",
 				success:function(data){
 					var a = JSON.parse(data);
